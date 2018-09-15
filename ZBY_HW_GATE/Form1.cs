@@ -20,7 +20,7 @@ namespace ZBY_HW_GATE
        
         TabPage ContainerTable = new TabPage("集装箱");
         TabPage PlateTable = new TabPage("电子车牌");
-        TabPage CardTable = new TabPage("身份证");
+        TabPage CvrTable = new TabPage("身份证");
         TabPage GateTable = new TabPage("道闸");
         TabPage LedTable = new TabPage("显示屏");
         TabPage PrintTable = new TabPage("打印机");
@@ -38,7 +38,7 @@ namespace ZBY_HW_GATE
         public Form1()
         {
             InitializeComponent();
-
+            //删除Page按钮
             ClosePagetoolStripButton.Enabled = false;
         }
 
@@ -49,17 +49,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void ContianerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ErgodicModiForm("ContainerTable", tabControl1))
-            {
-                ContainerTable.Name = "ContainerTable";
-                tabControl1.Controls.Add(ContainerTable);
-                Container_.TopLevel = false;
-                Container_.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                Container_.FormBorderStyle = FormBorderStyle.None;
-                Container_.Show();
-                ContainerTable.Controls.Add(Container_);
-            }
-            tabControl1.SelectedTab = ContainerTable;
+            SetTabPate("ContainerTable", ContainerTable, Container_);
         }
 
         /// <summary>
@@ -69,17 +59,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void PlateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ErgodicModiForm("PlateTable", tabControl1))
-            {
-                PlateTable.Name = "PlateTable";
-                tabControl1.Controls.Add(PlateTable);
-                Plate_.TopLevel = false;
-                Plate_.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                Plate_.FormBorderStyle = FormBorderStyle.None;
-                Plate_.Show();
-                PlateTable.Controls.Add(Plate_);
-            }
-            tabControl1.SelectedTab = PlateTable;
+            SetTabPate("PlateTable", PlateTable, Plate_);
         }
 
         /// <summary>
@@ -89,7 +69,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void GateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Gate_.ShowDialog();
+            SetTabPate("GateTable", GateTable, Gate_);
         }
 
         /// <summary>
@@ -99,7 +79,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void ReaderCardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CVR_.ShowDialog();
+            SetTabPate("CvrTable", CvrTable, CVR_);
         }
 
         /// <summary>
@@ -109,7 +89,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void LocalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           dataBase_Window.ShowDialog();
+           SetTabPate("LocalTable", LocalTable, dataBase_Window);
         }
 
         /// <summary>
@@ -119,7 +99,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void InToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            InData_.ShowDialog();
+            SetTabPate("InTable", InTable, InData_);
         }
 
         /// <summary>
@@ -141,7 +121,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void LedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LED_.ShowDialog();
+            SetTabPate("LedTable", LedTable, LED_);
         }
 
         /// <summary>
@@ -151,7 +131,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void OutSluiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OutData_.ShowDialog();
+            SetTabPate("OutTable", OutTable, OutData_);
         }
 
         /// <summary>
@@ -214,6 +194,26 @@ namespace ZBY_HW_GATE
             TimetoolStripStatusLabel.Text = string.Format("系统运行：{0:d}小时{1}分钟{2}秒", Hours,Minutes,Seconds);
         }
 
+        /// <summary>
+        /// 添加Page页面
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="tabPage"></param>
+        /// <param name="form"></param>
+        private void SetTabPate(string Name,TabPage tabPage,Form form)
+        {
+            if (ErgodicModiForm(Name, tabControl1))
+            {
+                tabPage.Name = Name;
+                tabControl1.Controls.Add(tabPage);
+                form.TopLevel = false;
+                form.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                form.FormBorderStyle = FormBorderStyle.None;
+                form.Show();
+                tabPage.Controls.Add(form);
+            }
+            tabControl1.SelectedTab = tabPage;
+        }
 
         /// </summary>  
         /// <param name="MainTabControlKey">选项卡的键值</param>  
