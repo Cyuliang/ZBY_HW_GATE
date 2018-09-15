@@ -1,0 +1,198 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ZBY_HW_GATE.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ServerIPAddr" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="ServerPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">12011</Value>
+    </Setting>
+    <Setting Name="LaneNum" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="PlateIPAddr" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">192.168.1.98</Value>
+    </Setting>
+    <Setting Name="PlatePort" Type="System.UInt32" Scope="Application">
+      <Value Profile="(Default)">8080</Value>
+    </Setting>
+    <Setting Name="PlatePicSavrPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\\Image\\</Value>
+    </Setting>
+    <Setting Name="prefix" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0030323130393533</Value>
+    </Setting>
+    <Setting Name="CVRCom" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="NetWork" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="InDoorIp" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">192.168.1.111</Value>
+    </Setting>
+    <Setting Name="InDoorPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">60000</Value>
+    </Setting>
+    <Setting Name="OutDoorIp" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">192.168.1.112</Value>
+    </Setting>
+    <Setting Name="OutDoorPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">60000</Value>
+    </Setting>
+    <Setting Name="InDoorSN" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">223166359</Value>
+    </Setting>
+    <Setting Name="OutDoorSN" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">223285189</Value>
+    </Setting>
+    <Setting Name="nControlType" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1126</Value>
+    </Setting>
+    <Setting Name="nScreenNo" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="nSendMode" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="nWidth" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">256</Value>
+    </Setting>
+    <Setting Name="nHeight" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">160</Value>
+    </Setting>
+    <Setting Name="nScreenType" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="nPixelMode" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="pCom" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">COM1</Value>
+    </Setting>
+    <Setting Name="nBaud" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">57600</Value>
+    </Setting>
+    <Setting Name="pSocketIP" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">192.168.1.118</Value>
+    </Setting>
+    <Setting Name="nSocketPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5005</Value>
+    </Setting>
+    <Setting Name="nServerMode" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="pBarcode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="pNetworkID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="pServerIP" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="nServerPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">6055</Value>
+    </Setting>
+    <Setting Name="pServerAccessUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="pServerAccessPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="pCommandDataFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="nDYAreaID" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="nRunMode" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="nTimeOut" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="nAllProRelate" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="pProRelateList" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="nPlayImmediately" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="nAreaX" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">88,88,88,161,120</Value>
+    </Setting>
+    <Setting Name="nAreaY" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">29,55,81,56,107</Value>
+    </Setting>
+    <Setting Name="nAreaWidth" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">168,70,70,95,128</Value>
+    </Setting>
+    <Setting Name="nAreaHeight" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">19,19,19,42,19</Value>
+    </Setting>
+    <Setting Name="nAreaFMode" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">255</Value>
+    </Setting>
+    <Setting Name="nAreaFLine" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="nAreaFColor" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">255</Value>
+    </Setting>
+    <Setting Name="nAreaFStunt" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">7</Value>
+    </Setting>
+    <Setting Name="nAreaFRunSpeed" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="nAreaFMoveStep" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="pText" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="nShowSingle" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="pFontName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">“宋体"</Value>
+    </Setting>
+    <Setting Name="nFontSize" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">12</Value>
+    </Setting>
+    <Setting Name="nBold" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="nFontColor" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">65535</Value>
+    </Setting>
+    <Setting Name="nStunt" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="nRunSpeed" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="nShowTime" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="nDelAllDYArea" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="pDYAreaIDList" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0,1,2,3,4</Value>
+    </Setting>
+    <Setting Name="nStaticIpMode" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="nAlignment" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="LocalIp" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">192.168.1.109</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

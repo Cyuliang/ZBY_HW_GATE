@@ -1,0 +1,590 @@
+18:44:07.480  connect 127.0.0.1 success!
+18:44:08.995  Start recvice recognition data
+18:44:15.805  Recvice recognition data error, ret = 0, WSAGetLastError() = 0
+18:44:15.820  End recvice recognition data
+18:44:15.829  127.0.0.1 TCP recv disconnect!
+18:44:15.872  connect 127.0.0.1 success!
+18:44:16.391  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:44:16.407  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:44:16.421  获取本机ip地址:192.168.1.109
+18:44:16.431  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:17.436  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:44:17.444  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:17.450  127.0.0.1:bind 10005 port success, BindPort
+18:44:17.456  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:44:17.461  127.0.0.1:bind 10006 port success, nAlivePort
+18:44:17.467  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:44:17.477  127.0.0.1:连接设备失败，错误状态值为:-1
+18:44:18.498  connect 127.0.0.1 success!
+18:44:20.008  Start recvice recognition data
+18:44:25.804  Recvice recognition data error, ret = 0, WSAGetLastError() = 0
+18:44:25.817  End recvice recognition data
+18:44:25.826  127.0.0.1 TCP recv disconnect!
+18:44:25.835  connect 127.0.0.1 success!
+18:44:26.353  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:44:26.367  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:44:26.379  获取本机ip地址:192.168.1.109
+18:44:26.388  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:27.401  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:44:27.407  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:27.412  127.0.0.1:bind 10005 port success, BindPort
+18:44:27.418  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:44:27.423  127.0.0.1:bind 10006 port success, nAlivePort
+18:44:27.429  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:44:27.440  127.0.0.1:连接设备失败，错误状态值为:-1
+18:44:28.453  connect 127.0.0.1 success!
+18:44:29.962  Start recvice recognition data
+18:44:32.106  Recvice recognition data error, ret = 0, WSAGetLastError() = 0
+18:44:32.114  End recvice recognition data
+18:44:32.123  127.0.0.1 TCP recv disconnect!
+18:44:33.131  connect 127.0.0.1 fail!
+18:44:33.137  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:44:33.153  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:44:33.165  获取本机ip地址:192.168.1.109
+18:44:33.170  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:34.176  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:44:34.182  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:34.188  127.0.0.1:bind 10005 port success, BindPort
+18:44:34.194  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:44:34.199  127.0.0.1:bind 10006 port success, nAlivePort
+18:44:34.205  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:44:34.216  127.0.0.1:连接设备失败，错误状态值为:-1
+18:44:36.228  connect 127.0.0.1 fail!
+18:44:36.234  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:44:36.248  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:44:36.263  获取本机ip地址:192.168.1.109
+18:44:36.270  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:37.278  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:44:37.284  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:37.289  127.0.0.1:bind 10005 port success, BindPort
+18:44:37.295  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:44:37.300  127.0.0.1:bind 10006 port success, nAlivePort
+18:44:37.306  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:44:37.318  127.0.0.1:连接设备失败，错误状态值为:-1
+18:44:39.330  connect 127.0.0.1 fail!
+18:44:39.336  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:44:39.352  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:44:39.363  获取本机ip地址:192.168.1.109
+18:44:39.369  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:40.376  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:44:40.382  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:40.390  127.0.0.1:bind 10005 port success, BindPort
+18:44:40.396  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:44:40.402  127.0.0.1:bind 10006 port success, nAlivePort
+18:44:40.408  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:44:40.419  127.0.0.1:连接设备失败，错误状态值为:-1
+18:44:42.432  connect 127.0.0.1 fail!
+18:44:42.438  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:44:42.454  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:44:42.467  获取本机ip地址:192.168.1.109
+18:44:42.473  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:43.479  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:44:43.484  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:43.490  127.0.0.1:bind 10005 port success, BindPort
+18:44:43.496  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:44:43.501  127.0.0.1:bind 10006 port success, nAlivePort
+18:44:43.507  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:44:43.518  127.0.0.1:连接设备失败，错误状态值为:-1
+18:44:45.530  connect 127.0.0.1 fail!
+18:44:45.536  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:44:45.551  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:44:45.569  获取本机ip地址:192.168.1.109
+18:44:45.576  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:46.584  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:44:46.590  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:46.597  127.0.0.1:bind 10005 port success, BindPort
+18:44:46.602  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:44:46.608  127.0.0.1:bind 10006 port success, nAlivePort
+18:44:46.615  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:44:46.627  127.0.0.1:连接设备失败，错误状态值为:-1
+18:44:48.642  connect 127.0.0.1 fail!
+18:44:48.648  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:44:48.662  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:44:48.674  获取本机ip地址:192.168.1.109
+18:44:48.680  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:49.687  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:44:49.693  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:49.700  127.0.0.1:bind 10005 port success, BindPort
+18:44:49.707  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:44:49.714  127.0.0.1:bind 10006 port success, nAlivePort
+18:44:49.720  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:44:49.732  127.0.0.1:连接设备失败，错误状态值为:-1
+18:44:51.745  connect 127.0.0.1 fail!
+18:44:51.751  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:44:51.767  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:44:51.782  获取本机ip地址:192.168.1.109
+18:44:51.788  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:52.797  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:44:52.803  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:52.809  127.0.0.1:bind 10005 port success, BindPort
+18:44:52.815  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:44:52.821  127.0.0.1:bind 10006 port success, nAlivePort
+18:44:52.827  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:44:52.842  127.0.0.1:连接设备失败，错误状态值为:-1
+18:44:54.859  connect 127.0.0.1 fail!
+18:44:54.865  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:44:54.878  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:44:54.890  获取本机ip地址:192.168.1.109
+18:44:54.895  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:55.901  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:44:55.908  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:55.915  127.0.0.1:bind 10005 port success, BindPort
+18:44:55.923  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:44:55.930  127.0.0.1:bind 10006 port success, nAlivePort
+18:44:55.935  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:44:55.947  127.0.0.1:连接设备失败，错误状态值为:-1
+18:44:57.960  connect 127.0.0.1 fail!
+18:44:57.966  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:44:57.984  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:44:57.997  获取本机ip地址:192.168.1.109
+18:44:58.004  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:59.011  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:44:59.017  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:44:59.022  127.0.0.1:bind 10005 port success, BindPort
+18:44:59.028  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:44:59.034  127.0.0.1:bind 10006 port success, nAlivePort
+18:44:59.040  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:44:59.051  127.0.0.1:连接设备失败，错误状态值为:-1
+18:45:01.065  connect 127.0.0.1 fail!
+18:45:01.071  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:45:01.085  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:45:01.096  获取本机ip地址:192.168.1.109
+18:45:01.102  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:45:02.107  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:45:02.113  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:45:02.118  127.0.0.1:bind 10005 port success, BindPort
+18:45:02.126  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:45:02.133  127.0.0.1:bind 10006 port success, nAlivePort
+18:45:02.140  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:45:02.151  127.0.0.1:连接设备失败，错误状态值为:-1
+18:45:04.164  connect 127.0.0.1 fail!
+18:45:04.171  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:45:04.188  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:45:04.200  获取本机ip地址:192.168.1.109
+18:45:04.208  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:45:05.216  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:45:05.222  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:45:05.228  127.0.0.1:bind 10005 port success, BindPort
+18:45:05.234  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:45:05.240  127.0.0.1:bind 10006 port success, nAlivePort
+18:45:05.246  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:45:05.262  127.0.0.1:连接设备失败，错误状态值为:-1
+18:45:07.278  connect 127.0.0.1 fail!
+18:45:07.283  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:45:07.299  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:45:07.310  获取本机ip地址:192.168.1.109
+18:45:07.316  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:45:08.324  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:45:08.331  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:45:08.337  127.0.0.1:bind 10005 port success, BindPort
+18:45:08.343  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:45:08.349  127.0.0.1:bind 10006 port success, nAlivePort
+18:45:08.355  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:45:08.366  127.0.0.1:连接设备失败，错误状态值为:-1
+18:45:10.379  connect 127.0.0.1 fail!
+18:45:10.385  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:45:10.401  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:45:10.416  获取本机ip地址:192.168.1.109
+18:45:10.424  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:45:11.431  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:45:11.439  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:45:11.445  127.0.0.1:bind 10005 port success, BindPort
+18:45:11.450  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:45:11.456  127.0.0.1:bind 10006 port success, nAlivePort
+18:45:11.462  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:45:11.476  127.0.0.1:连接设备失败，错误状态值为:-1
+18:45:12.491  connect 127.0.0.1 success!
+18:45:14.001  Start recvice recognition data
+18:45:24.007  Recvice recognition data time out
+18:45:24.013  End recvice recognition data
+18:45:24.020  Start recvice recognition data
+18:45:34.026  Recvice recognition data time out
+18:45:34.032  End recvice recognition data
+18:45:34.038  Start recvice recognition data
+18:45:44.046  Recvice recognition data time out
+18:45:44.054  End recvice recognition data
+18:45:44.060  127.0.0.1 Network Connect disconnect!
+18:45:44.066  connect 127.0.0.1 success!
+18:45:44.583  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:45:44.597  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:45:44.609  获取本机ip地址:192.168.1.109
+18:45:44.614  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:45:45.621  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:45:45.627  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:45:45.633  127.0.0.1:bind 10005 port success, BindPort
+18:45:45.639  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:45:45.645  127.0.0.1:bind 10006 port success, nAlivePort
+18:45:45.651  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:45:45.663  127.0.0.1:连接设备失败，错误状态值为:-1
+18:45:46.677  connect 127.0.0.1 success!
+18:45:48.189  Start recvice recognition data
+18:45:58.195  Recvice recognition data time out
+18:45:58.200  End recvice recognition data
+18:45:58.207  Start recvice recognition data
+18:46:08.217  Recvice recognition data time out
+18:46:08.223  End recvice recognition data
+18:46:08.231  Start recvice recognition data
+18:46:18.238  Recvice recognition data time out
+18:46:18.246  End recvice recognition data
+18:46:18.255  127.0.0.1 Network Connect disconnect!
+18:46:18.265  connect 127.0.0.1 success!
+18:46:18.785  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:46:18.805  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:46:18.821  获取本机ip地址:192.168.1.109
+18:46:18.829  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:46:19.837  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:46:19.843  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:46:19.848  127.0.0.1:bind 10005 port success, BindPort
+18:46:19.854  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:46:19.861  127.0.0.1:bind 10006 port success, nAlivePort
+18:46:19.867  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:46:19.880  127.0.0.1:连接设备失败，错误状态值为:-1
+18:46:20.892  connect 127.0.0.1 success!
+18:46:22.400  Start recvice recognition data
+18:46:32.408  Recvice recognition data time out
+18:46:32.414  End recvice recognition data
+18:46:32.422  Start recvice recognition data
+18:46:42.427  Recvice recognition data time out
+18:46:42.433  End recvice recognition data
+18:46:42.442  Start recvice recognition data
+18:46:52.450  Recvice recognition data time out
+18:46:52.456  End recvice recognition data
+18:46:52.463  127.0.0.1 Network Connect disconnect!
+18:46:52.471  connect 127.0.0.1 success!
+18:46:52.988  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:46:53.002  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:46:53.014  获取本机ip地址:192.168.1.109
+18:46:53.020  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:46:54.026  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:46:54.033  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:46:54.039  127.0.0.1:bind 10005 port success, BindPort
+18:46:54.045  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:46:54.051  127.0.0.1:bind 10006 port success, nAlivePort
+18:46:54.057  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:46:54.070  127.0.0.1:连接设备失败，错误状态值为:-1
+18:46:55.084  connect 127.0.0.1 success!
+18:46:56.594  Start recvice recognition data
+18:47:06.600  Recvice recognition data time out
+18:47:06.607  End recvice recognition data
+18:47:06.618  Start recvice recognition data
+18:47:16.627  Recvice recognition data time out
+18:47:16.632  End recvice recognition data
+18:47:16.638  Start recvice recognition data
+18:47:26.647  Recvice recognition data time out
+18:47:26.653  End recvice recognition data
+18:47:26.662  127.0.0.1 Network Connect disconnect!
+18:47:26.672  connect 127.0.0.1 success!
+18:47:27.188  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:47:27.201  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:47:27.213  获取本机ip地址:192.168.1.109
+18:47:27.219  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:47:28.226  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:47:28.231  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:47:28.237  127.0.0.1:bind 10005 port success, BindPort
+18:47:28.243  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:47:28.249  127.0.0.1:bind 10006 port success, nAlivePort
+18:47:28.255  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:47:28.267  127.0.0.1:连接设备失败，错误状态值为:-1
+18:47:29.279  connect 127.0.0.1 success!
+18:47:30.791  Start recvice recognition data
+18:47:40.798  Recvice recognition data time out
+18:47:40.804  End recvice recognition data
+18:47:40.811  Start recvice recognition data
+18:47:50.818  Recvice recognition data time out
+18:47:50.824  End recvice recognition data
+18:47:50.830  Start recvice recognition data
+18:48:00.837  Recvice recognition data time out
+18:48:00.850  End recvice recognition data
+18:48:00.898  127.0.0.1 Network Connect disconnect!
+18:48:00.907  connect 127.0.0.1 success!
+18:48:25.880  connect 127.0.0.1 success!
+18:48:27.389  Start recvice recognition data
+18:48:30.135  Recvice recognition data error, ret = 0, WSAGetLastError() = 0
+18:48:30.151  End recvice recognition data
+18:48:30.159  127.0.0.1 TCP recv disconnect!
+18:48:30.214  connect 127.0.0.1 success!
+18:48:30.736  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:48:30.751  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:48:30.765  获取本机ip地址:192.168.1.109
+18:48:30.771  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:31.777  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:48:31.783  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:31.788  127.0.0.1:bind 10005 port success, BindPort
+18:48:31.795  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:48:31.802  127.0.0.1:bind 10006 port success, nAlivePort
+18:48:31.810  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:48:31.822  127.0.0.1:连接设备失败，错误状态值为:-1
+18:48:32.836  connect 127.0.0.1 success!
+18:48:34.350  Start recvice recognition data
+18:48:35.337  Recvice recognition data error, ret = 0, WSAGetLastError() = 0
+18:48:35.343  End recvice recognition data
+18:48:35.353  127.0.0.1 TCP recv disconnect!
+18:48:36.363  connect 127.0.0.1 fail!
+18:48:36.371  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:48:36.389  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:48:36.401  获取本机ip地址:192.168.1.109
+18:48:36.407  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:37.414  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:48:37.424  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:37.434  127.0.0.1:bind 10005 port success, BindPort
+18:48:37.442  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:48:37.449  127.0.0.1:bind 10006 port success, nAlivePort
+18:48:37.457  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:48:37.474  127.0.0.1:连接设备失败，错误状态值为:-1
+18:48:39.492  connect 127.0.0.1 fail!
+18:48:39.498  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:48:39.515  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:48:39.531  获取本机ip地址:192.168.1.109
+18:48:39.539  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:40.546  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:48:40.553  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:40.558  127.0.0.1:bind 10005 port success, BindPort
+18:48:40.564  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:48:40.570  127.0.0.1:bind 10006 port success, nAlivePort
+18:48:40.575  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:48:40.588  127.0.0.1:连接设备失败，错误状态值为:-1
+18:48:42.603  connect 127.0.0.1 fail!
+18:48:42.609  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:48:42.623  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:48:42.634  获取本机ip地址:192.168.1.109
+18:48:42.640  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:43.646  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:48:43.654  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:43.662  127.0.0.1:bind 10005 port success, BindPort
+18:48:43.669  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:48:43.675  127.0.0.1:bind 10006 port success, nAlivePort
+18:48:43.681  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:48:43.693  127.0.0.1:连接设备失败，错误状态值为:-1
+18:48:45.707  connect 127.0.0.1 fail!
+18:48:45.713  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:48:45.731  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:48:45.746  获取本机ip地址:192.168.1.109
+18:48:45.753  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:46.761  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:48:46.767  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:46.772  127.0.0.1:bind 10005 port success, BindPort
+18:48:46.778  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:48:46.784  127.0.0.1:bind 10006 port success, nAlivePort
+18:48:46.790  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:48:46.805  127.0.0.1:连接设备失败，错误状态值为:-1
+18:48:48.821  connect 127.0.0.1 fail!
+18:48:48.827  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:48:48.842  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:48:48.856  获取本机ip地址:192.168.1.109
+18:48:48.864  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:49.872  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:48:49.878  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:49.884  127.0.0.1:bind 10005 port success, BindPort
+18:48:49.890  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:48:49.896  127.0.0.1:bind 10006 port success, nAlivePort
+18:48:49.902  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:48:49.914  127.0.0.1:连接设备失败，错误状态值为:-1
+18:48:51.928  connect 127.0.0.1 fail!
+18:48:51.933  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:48:51.950  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:48:51.965  获取本机ip地址:192.168.1.109
+18:48:51.972  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:52.981  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:48:52.987  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:52.993  127.0.0.1:bind 10005 port success, BindPort
+18:48:52.999  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:48:53.005  127.0.0.1:bind 10006 port success, nAlivePort
+18:48:53.010  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:48:53.023  127.0.0.1:连接设备失败，错误状态值为:-1
+18:48:55.040  connect 127.0.0.1 fail!
+18:48:55.046  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:48:55.059  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:48:55.072  获取本机ip地址:192.168.1.109
+18:48:55.078  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:56.087  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:48:56.093  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:56.102  127.0.0.1:bind 10005 port success, BindPort
+18:48:56.113  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:48:56.123  127.0.0.1:bind 10006 port success, nAlivePort
+18:48:56.132  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:48:56.147  127.0.0.1:连接设备失败，错误状态值为:-1
+18:48:58.163  connect 127.0.0.1 fail!
+18:48:58.169  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:48:58.184  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:48:58.199  获取本机ip地址:192.168.1.109
+18:48:58.209  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:59.217  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:48:59.229  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:48:59.241  127.0.0.1:bind 10005 port success, BindPort
+18:48:59.256  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:48:59.275  127.0.0.1:bind 10006 port success, nAlivePort
+18:48:59.287  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:48:59.308  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:01.328  connect 127.0.0.1 fail!
+18:49:01.335  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:01.350  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:01.362  获取本机ip地址:192.168.1.109
+18:49:01.369  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:02.376  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:02.382  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:02.389  127.0.0.1:bind 10005 port success, BindPort
+18:49:02.397  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:02.404  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:02.411  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:02.423  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:04.437  connect 127.0.0.1 fail!
+18:49:04.443  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:04.459  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:04.472  获取本机ip地址:192.168.1.109
+18:49:04.479  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:05.487  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:05.496  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:05.504  127.0.0.1:bind 10005 port success, BindPort
+18:49:05.514  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:05.523  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:05.533  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:05.550  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:07.571  connect 127.0.0.1 fail!
+18:49:07.577  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:07.592  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:07.604  获取本机ip地址:192.168.1.109
+18:49:07.610  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:08.617  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:08.625  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:08.632  127.0.0.1:bind 10005 port success, BindPort
+18:49:08.637  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:08.645  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:08.652  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:08.665  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:10.679  connect 127.0.0.1 fail!
+18:49:10.685  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:10.701  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:10.716  获取本机ip地址:192.168.1.109
+18:49:10.723  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:11.732  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:11.738  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:11.744  127.0.0.1:bind 10005 port success, BindPort
+18:49:11.750  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:11.755  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:11.762  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:11.773  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:13.792  connect 127.0.0.1 fail!
+18:49:13.798  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:13.814  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:13.829  获取本机ip地址:192.168.1.109
+18:49:13.839  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:14.849  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:14.856  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:14.866  127.0.0.1:bind 10005 port success, BindPort
+18:49:14.874  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:14.885  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:14.893  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:14.908  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:16.921  connect 127.0.0.1 fail!
+18:49:16.930  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:16.953  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:16.968  获取本机ip地址:192.168.1.109
+18:49:16.975  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:17.985  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:17.991  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:17.999  127.0.0.1:bind 10005 port success, BindPort
+18:49:18.005  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:18.013  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:18.019  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:18.033  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:20.049  connect 127.0.0.1 fail!
+18:49:20.057  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:20.071  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:20.083  获取本机ip地址:192.168.1.109
+18:49:20.089  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:21.096  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:21.102  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:21.112  127.0.0.1:bind 10005 port success, BindPort
+18:49:21.119  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:21.125  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:21.132  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:21.147  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:23.160  connect 127.0.0.1 fail!
+18:49:23.166  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:23.185  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:23.204  获取本机ip地址:192.168.1.109
+18:49:23.213  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:24.222  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:24.227  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:24.233  127.0.0.1:bind 10005 port success, BindPort
+18:49:24.242  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:24.248  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:24.254  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:24.274  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:26.291  connect 127.0.0.1 fail!
+18:49:26.297  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:26.312  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:26.323  获取本机ip地址:192.168.1.109
+18:49:26.329  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:27.336  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:27.342  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:27.349  127.0.0.1:bind 10005 port success, BindPort
+18:49:27.356  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:27.363  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:27.371  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:27.388  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:29.408  connect 127.0.0.1 fail!
+18:49:29.416  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:29.439  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:29.453  获取本机ip地址:192.168.1.109
+18:49:29.461  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:30.469  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:30.474  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:30.480  127.0.0.1:bind 10005 port success, BindPort
+18:49:30.486  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:30.492  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:30.497  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:30.510  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:32.523  connect 127.0.0.1 fail!
+18:49:32.529  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:32.542  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:32.554  获取本机ip地址:192.168.1.109
+18:49:32.560  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:33.567  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:33.574  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:33.586  127.0.0.1:bind 10005 port success, BindPort
+18:49:33.592  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:33.598  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:33.605  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:33.617  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:35.629  connect 127.0.0.1 fail!
+18:49:35.635  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:35.650  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:35.666  获取本机ip地址:192.168.1.109
+18:49:35.674  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:36.696  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:36.703  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:36.709  127.0.0.1:bind 10005 port success, BindPort
+18:49:36.715  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:36.721  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:36.727  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:36.740  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:38.754  connect 127.0.0.1 fail!
+18:49:38.761  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:38.787  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:38.806  获取本机ip地址:192.168.1.109
+18:49:38.815  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:39.823  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:39.829  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:39.835  127.0.0.1:bind 10005 port success, BindPort
+18:49:39.843  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:39.851  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:39.858  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:39.872  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:41.889  connect 127.0.0.1 fail!
+18:49:41.896  127.0.0.1:配置文件中获取网卡IP失败, ret = -3
+18:49:41.910  127.0.0.1:通过接口自动匹配本地ip地址失败, ret = -4
+18:49:41.922  获取本机ip地址:192.168.1.109
+18:49:41.929  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:42.934  127.0.0.1:自动分配端口成功, ret = 0，port=10005
+18:49:42.942  127.0.0.1:bind 10005 port succeed, hsdk_socket->port = 10005
+18:49:42.949  127.0.0.1:bind 10005 port success, BindPort
+18:49:42.955  127.0.0.1:bind 10006 port succeed, hsdk_socket->port = 10006
+18:49:42.961  127.0.0.1:bind 10006 port success, nAlivePort
+18:49:42.966  127.0.0.1:连接设备失败, 发送数据失败, WSAGetLastError = 10049
+18:49:42.978  127.0.0.1:连接设备失败，错误状态值为:-1
+18:49:43.991  connect 127.0.0.1 success!
+18:49:45.503  Start recvice recognition data
+18:49:55.510  Recvice recognition data time out
+18:49:55.515  End recvice recognition data
+18:49:55.522  Start recvice recognition data
