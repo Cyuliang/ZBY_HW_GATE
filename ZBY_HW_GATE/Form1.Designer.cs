@@ -461,6 +461,7 @@
             this.toolStripButton2.Size = new System.Drawing.Size(35, 22);
             this.toolStripButton2.Text = "Link";
             this.toolStripButton2.ToolTipText = "链接集装箱服务端";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripButton3
             // 
@@ -471,6 +472,7 @@
             this.toolStripButton3.Size = new System.Drawing.Size(45, 22);
             this.toolStripButton3.Text = "Abort";
             this.toolStripButton3.ToolTipText = "断开集装箱服务端";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripButton4
             // 
@@ -481,6 +483,7 @@
             this.toolStripButton4.Size = new System.Drawing.Size(43, 22);
             this.toolStripButton4.Text = "LastR";
             this.toolStripButton4.ToolTipText = "获取最后一次集装箱识别结果";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripSeparator2
             // 

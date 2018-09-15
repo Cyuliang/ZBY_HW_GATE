@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using ZBY_HW_GATE.Container;
 using ZBY_HW_GATE.Plate;
@@ -8,7 +8,6 @@ namespace ZBY_HW_GATE
 {
     public partial class Form1 : Form
     {
-
         Container.Container_Window Container_ = new Container_Window();
         Plate.Plate_Window Plate_ = new Plate_Window();
         CVR.CVR_Window CVR_ = new CVR.CVR_Window();
@@ -16,7 +15,7 @@ namespace ZBY_HW_GATE
         LED.LED_Window LED_ = new LED.LED_Window();
         DataBase.DataBase_Window dataBase_Window = new DataBase.DataBase_Window();
         IEDataBase.InData_Window InData_ = new IEDataBase.InData_Window();
-        IEDataBase.OutData_Window OutData_ = new IEDataBase.OutData_Window();
+        IEDataBase.OutData_Window OutData_ = new IEDataBase.OutData_Window();        
        
         TabPage ContainerTable = new TabPage("集装箱");
         TabPage PlateTable = new TabPage("电子车牌");
@@ -33,6 +32,9 @@ namespace ZBY_HW_GATE
         TabPage OutTable = new TabPage("出闸数据库");
         TabPage AboutTable = new TabPage("系统说明");
 
+        /// <summary>
+        /// 启动时间
+        /// </summary>
         DateTime beginTime = DateTime.Now;
 
         public Form1()
@@ -40,6 +42,37 @@ namespace ZBY_HW_GATE
             InitializeComponent();
             //删除Page按钮
             ClosePagetoolStripButton.Enabled = false;
+            Container_.MessageDelegate += ContianerMessageDelegate;
+            Container_.StatusDelegate += ContainerStatuesDelegate;
+        }
+
+        /// <summary>
+        /// 箱号数据LOG
+        /// </summary>
+        /// <param name="Mes"></param>
+        private void ContianerMessageDelegate(string Mes)
+        {
+            if(MainListBox.Items.Count>300)
+            {
+                MainListBox.Items.Clear();
+            }
+            MainListBox.Items.Add(Mes);
+        }
+
+        /// <summary>
+        /// 箱号链接状态
+        /// </summary>
+        /// <param name="status"></param>
+        private void ContainerStatuesDelegate(string status)
+        {
+            if(status=="1")
+            {
+                toolStripStatusLabel2.BackColor = Color.DarkGreen;
+            }
+            if(status=="0")
+            {
+                toolStripStatusLabel2.BackColor = Color.DarkRed;
+            }
         }
 
         /// <summary>
@@ -232,5 +265,37 @@ namespace ZBY_HW_GATE
             }
             return true;//不存在  
         }
+
+        #region//集装箱
+        /// <summary>
+        /// 链接集装箱号码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Container_.ContainerLink();
+        }
+
+        /// <summary>
+        /// 断开集装箱号码链接
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            Container_.ContainerClose();
+        }
+
+        /// <summary>
+        /// 获取最后一次结果
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            Container_.ContainerLastR();
+        }
+        #endregion
     }
 }

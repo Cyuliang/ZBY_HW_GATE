@@ -8,16 +8,22 @@ namespace ZBY_HW_GATE.Container
     {
         CLog log = new CLog();
         System.Threading.Timer timer_connect2server;
+        public delegate void ContainerDelegate(string mes);
+        public ContainerDelegate MessageDelegate;
+        public ContainerDelegate StatusDelegate;
 
         public Container_Window()
         {
             InitializeComponent();
 
+            Linkbutton.Hide();
+            LastRbutton.Hide();
+            Abortbutton.Hide();
+            axVECONclient1.Hide();
+
             timer_connect2server = new System.Threading.Timer(Connect2server, null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10));
             //初始化按钮颜色
-            button1.BackColor = Color.DarkRed;
-
-            axVECONclient1.Hide();
+            Linkbutton.BackColor = Color.DarkRed;        
             //property
             axVECONclient1.ServerIPAddr = Properties.Settings.Default.ServerIPAddr;
             axVECONclient1.ServerPort = Properties.Settings.Default.ServerPort;
@@ -25,8 +31,7 @@ namespace ZBY_HW_GATE.Container
             axVECONclient1.OnCombinedRecognitionResultISO += AxVECONclient1_OnCombinedRecognitionResultISO;
             axVECONclient1.OnIntermediateRecognitionResultISO += AxVECONclient1_OnIntermediateRecognitionResultISO;
             axVECONclient1.OnUpdateLPNEvent += AxVECONclient1_OnUpdateLPNEvent;
-            axVECONclient1.OnNewLPNEvent += AxVECONclient1_OnNewLPNEvent;
-            
+            axVECONclient1.OnNewLPNEvent += AxVECONclient1_OnNewLPNEvent;            
             //Connect Event
             axVECONclient1.OnServerConnected += AxVECONclient1_OnServerConnected;
             axVECONclient1.OnServerDisconnected += AxVECONclient1_OnServerDisconnected;
@@ -52,8 +57,8 @@ namespace ZBY_HW_GATE.Container
         {
             log.logWarn.Warn("Container Server Error");
             Message("Container Server Error");
-            button1.Text = "Link";
-            button1.BackColor = Color.DarkRed;            
+            Linkbutton.Text = "Link";
+            Linkbutton.BackColor = Color.DarkRed;            
             timer_connect2server.Change(TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10));
         }
 
@@ -66,8 +71,9 @@ namespace ZBY_HW_GATE.Container
         {
             log.logWarn.Warn("Container Link Disconnected ");
             Message("Container Link Disconnected ");
-            button1.Text = "Link";
-            button1.BackColor = Color.DarkRed;
+            StatusDelegate("0");
+            Linkbutton.Text = "Link";
+            Linkbutton.BackColor = Color.DarkRed;
             timer_connect2server.Change(TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10));
         }
 
@@ -80,8 +86,9 @@ namespace ZBY_HW_GATE.Container
         {
             log.logInfo.Info("Container Link Success ");
             Message("Container Link Success ");
-            button1.Text = "Abort";
-            button1.BackColor = Color.DarkGreen;
+            StatusDelegate("1");
+            Linkbutton.Text = "Abort";
+            Linkbutton.BackColor = Color.DarkGreen;
             timer_connect2server.Change(-1, -1);
         }
 
@@ -111,6 +118,7 @@ namespace ZBY_HW_GATE.Container
         {
             log.logInfo.Info("Container UpdateLPN "+e.triggerTime.ToString()+" "+e.lPN);
             Message("Container UpdateLPN " + e.triggerTime.ToString() + " " + e.lPN);
+            MessageDelegate("Container UpdateLPN " + e.triggerTime.ToString() + " " + e.lPN);
             textBox10.Text = e.triggerTime.ToString();
             textBox11.Text = e.lPN;
             textBox12.Text = e.colorCode.ToString();
@@ -126,6 +134,7 @@ namespace ZBY_HW_GATE.Container
         {
             log.logInfo.Info("Container NewPLN " + e.triggerTime.ToString() + " " + e.lPN);
             Message("Container NewPLN " + e.triggerTime.ToString() + " " + e.lPN);
+            MessageDelegate("Container NewPLN " + e.triggerTime.ToString() + " " + e.lPN);
             textBox10.Text = e.triggerTime.ToString();
             textBox11.Text = e.lPN;
             textBox12.Text = e.colorCode.ToString();
@@ -141,6 +150,7 @@ namespace ZBY_HW_GATE.Container
         {
             log.logInfo.Info("Container Result " + e.triggerTime.ToString() + " " + e.checkSum1);
             Message("Container Result " + e.triggerTime.ToString() + " " + e.checkSum1);
+            MessageDelegate("Container Result " + e.triggerTime.ToString() + " " + e.checkSum1);
             textBox1.Text = e.laneNum.ToString();
             textBox2.Text = e.triggerTime.ToString();
             textBox3.Text = e.containerNum1;
@@ -168,7 +178,7 @@ namespace ZBY_HW_GATE.Container
             e.Cancel = true;
             Hide();
         }
-
+        #region//链接箱号
         /// <summary>
         /// 链接箱号按钮
         /// </summary>
@@ -178,7 +188,15 @@ namespace ZBY_HW_GATE.Container
         {
             axVECONclient1.Connect2Server();
         }
-
+        /// <summary>
+        /// 主界面链接箱号识别
+        /// </summary>
+        public void ContainerLink()
+        {
+            axVECONclient1.Connect2Server();
+        }
+        #endregion
+        #region//获取最后一次结果
         /// <summary>
         /// 获取最后一次结果
         /// </summary>
@@ -190,7 +208,17 @@ namespace ZBY_HW_GATE.Container
             log.logInfo.Info("Get Last Number");
             Message("Get Last Number");
         }
-
+        /// <summary>
+        /// 主界面获取结果
+        /// </summary>
+        public void ContainerLastR()
+        {
+            axVECONclient1.SendLastResults(Properties.Settings.Default.LaneNum);
+            log.logInfo.Info("Get Last Number");
+            Message("Get Last Number");
+        }
+        #endregion
+        #region//断开链接
         /// <summary>
         /// 断开链接
         /// </summary>
@@ -201,7 +229,15 @@ namespace ZBY_HW_GATE.Container
             axVECONclient1.Disconnect();
             timer_connect2server.Change(-1, -1);          
         }
-
+        /// <summary>
+        /// 主界面断开箱号链接
+        /// </summary>
+        public void ContainerClose()
+        {
+            axVECONclient1.Disconnect();
+            timer_connect2server.Change(-1, -1);
+        }
+        #endregion
         /// <summary>
         /// 主动关闭
         /// </summary>
@@ -210,7 +246,6 @@ namespace ZBY_HW_GATE.Container
             axVECONclient1.Disconnect();
             timer_connect2server.Change(-1, -1);
         }
-
         /// <summary>
         /// Log
         /// </summary>

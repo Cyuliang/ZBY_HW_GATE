@@ -54,11 +54,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Linkbutton = new System.Windows.Forms.Button();
+            this.LastRbutton = new System.Windows.Forms.Button();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.Abortbutton = new System.Windows.Forms.Button();
             this.LogTextBox = new System.Windows.Forms.TextBox();
             this.axVECONclient1 = new AxVeconclientProj.AxVECONclient();
             ((System.ComponentModel.ISupportInitialize)(this.axVECONclient1)).BeginInit();
@@ -256,25 +256,25 @@
             this.label12.TabIndex = 23;
             this.label12.Text = "ColorCoe";
             // 
-            // button1
+            // Linkbutton
             // 
-            this.button1.Location = new System.Drawing.Point(120, 429);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Link";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.Linkbutton.Location = new System.Drawing.Point(120, 445);
+            this.Linkbutton.Name = "Linkbutton";
+            this.Linkbutton.Size = new System.Drawing.Size(75, 23);
+            this.Linkbutton.TabIndex = 25;
+            this.Linkbutton.Text = "Link";
+            this.Linkbutton.UseVisualStyleBackColor = true;
+            this.Linkbutton.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // button2
+            // LastRbutton
             // 
-            this.button2.Location = new System.Drawing.Point(282, 429);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(139, 23);
-            this.button2.TabIndex = 26;
-            this.button2.Text = "LastResult";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.LastRbutton.Location = new System.Drawing.Point(282, 445);
+            this.LastRbutton.Name = "LastRbutton";
+            this.LastRbutton.Size = new System.Drawing.Size(139, 23);
+            this.LastRbutton.TabIndex = 26;
+            this.LastRbutton.Text = "LastResult";
+            this.LastRbutton.UseVisualStyleBackColor = true;
+            this.LastRbutton.Click += new System.EventHandler(this.Button2_Click);
             // 
             // textBox13
             // 
@@ -292,19 +292,19 @@
             this.label13.TabIndex = 28;
             this.label13.Text = "LaneNum";
             // 
-            // button3
+            // Abortbutton
             // 
-            this.button3.Location = new System.Drawing.Point(201, 429);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 30;
-            this.button3.Text = "Abort";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            this.Abortbutton.Location = new System.Drawing.Point(201, 445);
+            this.Abortbutton.Name = "Abortbutton";
+            this.Abortbutton.Size = new System.Drawing.Size(75, 23);
+            this.Abortbutton.TabIndex = 30;
+            this.Abortbutton.Text = "Abort";
+            this.Abortbutton.UseVisualStyleBackColor = true;
+            this.Abortbutton.Click += new System.EventHandler(this.Button3_Click);
             // 
             // LogTextBox
             // 
-            this.LogTextBox.Location = new System.Drawing.Point(120, 299);
+            this.LogTextBox.Location = new System.Drawing.Point(120, 319);
             this.LogTextBox.Multiline = true;
             this.LogTextBox.Name = "LogTextBox";
             this.LogTextBox.Size = new System.Drawing.Size(542, 104);
@@ -323,14 +323,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(680, 469);
+            this.ClientSize = new System.Drawing.Size(702, 495);
             this.Controls.Add(this.LogTextBox);
             this.Controls.Add(this.axVECONclient1);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.Abortbutton);
             this.Controls.Add(this.textBox13);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.LastRbutton);
+            this.Controls.Add(this.Linkbutton);
             this.Controls.Add(this.textBox12);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBox11);
@@ -391,11 +391,11 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Linkbutton;
+        private System.Windows.Forms.Button LastRbutton;
         private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button Abortbutton;
         private System.Windows.Forms.TextBox LogTextBox;
         private AxVeconclientProj.AxVECONclient axVECONclient1;
     }
