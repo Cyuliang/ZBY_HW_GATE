@@ -6,10 +6,18 @@ namespace ZBY_HW_GATE.Container
 {
     public partial class Container_Window : Form
     {
-        CLog log = new CLog();
-        System.Threading.Timer timer_connect2server;
-        public delegate void ContainerDelegate(string mes);
-        public ContainerDelegate MessageDelegate;
+        private CLog log = new CLog();
+        private IEDataBase.InData InData_ = new IEDataBase.InData();
+
+        private System.Threading.Timer timer_connect2server;
+        public delegate void ContainerDelegate(string mes);        
+        /// <summary>
+        /// 主界面LOG事件
+        /// </summary>
+        public event ContainerDelegate ContainerEvent;
+        /// <summary>
+        /// 链接状态事件
+        /// </summary>
         public ContainerDelegate StatusDelegate;
 
         public Container_Window()
@@ -118,11 +126,12 @@ namespace ZBY_HW_GATE.Container
         {
             log.logInfo.Info("Container UpdateLPN "+e.triggerTime.ToString()+" "+e.lPN);
             Message("Container UpdateLPN " + e.triggerTime.ToString() + " " + e.lPN);
-            MessageDelegate("Container UpdateLPN " + e.triggerTime.ToString() + " " + e.lPN);
+            BeginInvoke(new ContainerDelegate(ContainerEvent), string.Format("Container UpdateLPN at：{0} Plate：{1}", e.triggerTime.ToString(), e.lPN));
             textBox10.Text = e.triggerTime.ToString();
             textBox11.Text = e.lPN;
             textBox12.Text = e.colorCode.ToString();
             textBox13.Text = e.laneNum.ToString();
+            InData_.Insert(e.triggerTime,e.lPN,string.Empty);
         }
 
         /// <summary>
@@ -134,7 +143,7 @@ namespace ZBY_HW_GATE.Container
         {
             log.logInfo.Info("Container NewPLN " + e.triggerTime.ToString() + " " + e.lPN);
             Message("Container NewPLN " + e.triggerTime.ToString() + " " + e.lPN);
-            MessageDelegate("Container NewPLN " + e.triggerTime.ToString() + " " + e.lPN);
+            BeginInvoke(new ContainerDelegate(ContainerEvent), string.Format("Container NewPLN at：{0} Plate：{1}", e.triggerTime.ToString(), e.lPN));
             textBox10.Text = e.triggerTime.ToString();
             textBox11.Text = e.lPN;
             textBox12.Text = e.colorCode.ToString();
@@ -150,7 +159,7 @@ namespace ZBY_HW_GATE.Container
         {
             log.logInfo.Info("Container Result " + e.triggerTime.ToString() + " " + e.checkSum1);
             Message("Container Result " + e.triggerTime.ToString() + " " + e.checkSum1);
-            MessageDelegate("Container Result " + e.triggerTime.ToString() + " " + e.checkSum1);
+            BeginInvoke(new ContainerDelegate(ContainerEvent), string.Format("Container Result at：{0} CheckSum：{1}", e.triggerTime.ToString(), e.checkSum1));
             textBox1.Text = e.laneNum.ToString();
             textBox2.Text = e.triggerTime.ToString();
             textBox3.Text = e.containerNum1;

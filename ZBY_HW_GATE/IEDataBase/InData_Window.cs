@@ -176,5 +176,11 @@ namespace ZBY_HW_GATE.IEDataBase
                 MessageBox.Show("导出文件成功", "提示", MessageBoxButtons.OK);
             }
         }
+
+        private void InData_Window_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //e.Cancel = true;
+            //Hide();
+        }
     }
 }

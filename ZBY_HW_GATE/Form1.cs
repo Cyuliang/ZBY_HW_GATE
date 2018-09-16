@@ -1,36 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using ZBY_HW_GATE.Container;
-using ZBY_HW_GATE.Plate;
 
 namespace ZBY_HW_GATE
 {
     public partial class Form1 : Form
     {
-        Container.Container_Window Container_ = new Container_Window();
-        Plate.Plate_Window Plate_ = new Plate_Window();
-        CVR.CVR_Window CVR_ = new CVR.CVR_Window();
-        Gate.Gate_Window Gate_ = new Gate.Gate_Window();
-        LED.LED_Window LED_ = new LED.LED_Window();
-        DataBase.DataBase_Window dataBase_Window = new DataBase.DataBase_Window();
-        IEDataBase.InData_Window InData_ = new IEDataBase.InData_Window();
-        IEDataBase.OutData_Window OutData_ = new IEDataBase.OutData_Window();        
-       
-        TabPage ContainerTable = new TabPage("集装箱");
-        TabPage PlateTable = new TabPage("电子车牌");
-        TabPage CvrTable = new TabPage("身份证");
-        TabPage GateTable = new TabPage("道闸");
-        TabPage LedTable = new TabPage("显示屏");
-        TabPage PrintTable = new TabPage("打印机");
-        TabPage ScanerTable = new TabPage("扫描仪");
-        TabPage ServerTable = new TabPage("服务端");
-        TabPage ClientTable = new TabPage("客户端");
-        TabPage HttpTable = new TabPage("HTTP");
-        TabPage LocalTable = new TabPage("本地数据库");
-        TabPage InTable = new TabPage("入闸数据库");
-        TabPage OutTable = new TabPage("出闸数据库");
-        TabPage AboutTable = new TabPage("系统说明");
+        private Container.Container_Window Container_ = new Container.Container_Window();
+        private Plate.Plate_Window Plate_ = new Plate.Plate_Window();
+        private CVR.CVR_Window CVR_ = new CVR.CVR_Window();
+        private Gate.Gate_Window Gate_ = new Gate.Gate_Window();
+        private LED.LED_Window LED_ = new LED.LED_Window();
+        private DataBase.DataBase_Window DataBase_ = new DataBase.DataBase_Window();
+        private IEDataBase.InData_Window InData_ = new IEDataBase.InData_Window();
+        private IEDataBase.OutData_Window OutData_ = new IEDataBase.OutData_Window();
+
+        private TabPage ContainerTable = new TabPage("集装箱");
+        private TabPage PlateTable = new TabPage("电子车牌");
+        private TabPage CvrTable = new TabPage("身份证");
+        private TabPage GateTable = new TabPage("道闸");
+        private TabPage LedTable = new TabPage("显示屏");
+        private TabPage PrintTable = new TabPage("打印机");
+        private TabPage ScanerTable = new TabPage("扫描仪");
+        private TabPage ServerTable = new TabPage("服务端");
+        private TabPage ClientTable = new TabPage("客户端");
+        private TabPage HttpTable = new TabPage("HTTP");
+        private TabPage LocalTable = new TabPage("本地数据库");
+        private TabPage InTable = new TabPage("入闸数据库");
+        private TabPage OutTable = new TabPage("出闸数据库");
+        private TabPage AboutTable = new TabPage("系统说明");
+
+        /// <summary>
+        /// page也from对象
+        /// </summary>
+        private Dictionary<TabPage, Form> tablItem = new Dictionary<TabPage, Form>();
 
         /// <summary>
         /// 启动时间
@@ -42,22 +46,25 @@ namespace ZBY_HW_GATE
             InitializeComponent();
             //删除Page按钮
             ClosePagetoolStripButton.Enabled = false;
-            Container_.MessageDelegate += ContianerMessageDelegate;
             Container_.StatusDelegate += ContainerStatuesDelegate;
+            Container_.ContainerEvent += Container__ContainerEvent;
         }
 
         /// <summary>
-        /// 箱号数据LOG
+        /// 集装箱数据Log
         /// </summary>
-        /// <param name="Mes"></param>
-        private void ContianerMessageDelegate(string Mes)
+        /// <param name="mes"></param>
+        private void Container__ContainerEvent(string mes)
         {
-            if(MainListBox.Items.Count>300)
+            if (MainListBox.Items.Count > 300)
             {
                 MainListBox.Items.Clear();
             }
-            MainListBox.Items.Add(Mes);
+            MainListBox.Items.Add(mes);
+            MainListBox.SelectedIndex = MainListBox.Items.Count - 1;
         }
+
+
 
         /// <summary>
         /// 箱号链接状态
@@ -67,7 +74,7 @@ namespace ZBY_HW_GATE
         {
             if(status=="1")
             {
-                toolStripStatusLabel2.BackColor = Color.DarkGreen;
+                toolStripStatusLabel2.BackColor = Color.DarkOrange;
             }
             if(status=="0")
             {
@@ -122,7 +129,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void LocalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           SetTabPate("LocalTable", LocalTable, dataBase_Window);
+           SetTabPate("LocalTable", LocalTable, DataBase_);
         }
 
         /// <summary>
@@ -189,6 +196,11 @@ namespace ZBY_HW_GATE
         {
             if (tabControl1.SelectedIndex != 0)
             {
+                foreach (Control form in tabControl1.SelectedTab.Controls)
+                {
+                    Form f = (Form)form;
+                    f.Close();
+                }
                 tabControl1.TabPages.RemoveAt(tabControl1.SelectedIndex);
             }
         }
