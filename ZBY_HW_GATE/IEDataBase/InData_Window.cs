@@ -34,6 +34,14 @@ namespace ZBY_HW_GATE.IEDataBase
             dataGridView1.DataSource = bindingSource1;
         }
 
+        public void Init_Window_Show()
+        {
+            dataSet1 = DataBase.MySqlHelper.GetDataSet(DataBase.MySqlHelper.Conn, CommandType.Text, "select * from hw.indata", null);
+            bindingSource1.DataSource = dataSet1.Tables[0];
+            bindingNavigator1.BindingSource = bindingSource1;
+            dataGridView1.DataSource = bindingSource1;
+        }
+
         /// <summary>
         /// 查询数据
         /// </summary>
@@ -44,7 +52,29 @@ namespace ZBY_HW_GATE.IEDataBase
             string cmdText=string.Empty;
             if (DataradioButton.Checked)
             {
-                cmdText = string.Format("SELECT *  FROM hw.indata WHERE Plate='{0}' or Container='{1}'", PlateTextBox.Text, ContainerTextBox.Text);
+                if(PlateTextBox.Text != string.Empty && ContainerTextBox.Text != string.Empty)
+                {
+                    cmdText = string.Format("SELECT *  FROM hw.indata WHERE Plate='{0}' or Container='{1}'", PlateTextBox.Text, ContainerTextBox.Text);
+                }
+                else
+                {
+                    if(PlateTextBox.Text!=string.Empty)
+                    {
+                        cmdText = string.Format("SELECT *  FROM hw.indata WHERE Plate='{0}'", PlateTextBox.Text);
+                    }
+                    else
+                    {
+                        if (ContainerTextBox.Text != string.Empty)
+                        {
+                            cmdText = string.Format("SELECT *  FROM hw.indata WHERE Container='{0}'", ContainerTextBox.Text);
+                        }
+                        else
+                        {
+                            MessageBox.Show("请输入要查询的数据！");
+                            return;
+                        }
+                    }
+                }               
             }
             if(TimeradioButton.Checked)
             {
@@ -179,8 +209,8 @@ namespace ZBY_HW_GATE.IEDataBase
 
         private void InData_Window_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //e.Cancel = true;
-            //Hide();
+            e.Cancel = true;
+            Hide();
         }
     }
 }

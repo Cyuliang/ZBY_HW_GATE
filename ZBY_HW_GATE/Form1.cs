@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -31,10 +30,8 @@ namespace ZBY_HW_GATE
         private TabPage OutTable = new TabPage("出闸数据库");
         private TabPage AboutTable = new TabPage("系统说明");
 
-        /// <summary>
-        /// page也from对象
-        /// </summary>
-        private Dictionary<TabPage, Form> tablItem = new Dictionary<TabPage, Form>();
+        private delegate void ContainerDelegate();
+        private delegate void InDataDelegate();
 
         /// <summary>
         /// 启动时间
@@ -44,52 +41,10 @@ namespace ZBY_HW_GATE
         public Form1()
         {
             InitializeComponent();
-            //删除Page按钮
+            //关闭Page页面按钮
             ClosePagetoolStripButton.Enabled = false;
             Container_.StatusDelegate += ContainerStatuesDelegate;
             Container_.ContainerEvent += Container__ContainerEvent;
-        }
-
-        /// <summary>
-        /// 集装箱数据Log
-        /// </summary>
-        /// <param name="mes"></param>
-        private void Container__ContainerEvent(string mes)
-        {
-            if (MainListBox.Items.Count > 300)
-            {
-                MainListBox.Items.Clear();
-            }
-            MainListBox.Items.Add(mes);
-            MainListBox.SelectedIndex = MainListBox.Items.Count - 1;
-        }
-
-
-
-        /// <summary>
-        /// 箱号链接状态
-        /// </summary>
-        /// <param name="status"></param>
-        private void ContainerStatuesDelegate(string status)
-        {
-            if(status=="1")
-            {
-                toolStripStatusLabel2.BackColor = Color.DarkOrange;
-            }
-            if(status=="0")
-            {
-                toolStripStatusLabel2.BackColor = Color.DarkRed;
-            }
-        }
-
-        /// <summary>
-        /// 箱号
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ContianerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SetTabPate("ContainerTable", ContainerTable, Container_);
         }
 
         /// <summary>
@@ -139,6 +94,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void InToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ((InDataDelegate)InData_.Init_Window_Show)();
             SetTabPate("InTable", InTable, InData_);
         }
 
@@ -254,6 +210,7 @@ namespace ZBY_HW_GATE
                 form.TopLevel = false;
                 form.Anchor = AnchorStyles.Top | AnchorStyles.Left;
                 form.FormBorderStyle = FormBorderStyle.None;
+                form.Dock = System.Windows.Forms.DockStyle.Fill;
                 form.Show();
                 tabPage.Controls.Add(form);
             }
@@ -280,13 +237,47 @@ namespace ZBY_HW_GATE
 
         #region//集装箱
         /// <summary>
+        /// 集装箱数据Log
+        /// </summary>
+        /// <param name="mes"></param>
+        private void Container__ContainerEvent(string mes)
+        {
+            Message(mes);
+        }
+
+        /// <summary>
+        /// 箱号链接状态
+        /// </summary>
+        /// <param name="status"></param>
+        private void ContainerStatuesDelegate(string status)
+        {
+            if (status == "1")
+            {
+                toolStripStatusLabel2.BackColor = Color.DarkOrange;
+            }
+            if (status == "0")
+            {
+                toolStripStatusLabel2.BackColor = Color.DarkRed;
+            }
+        }
+
+        /// <summary>
+        /// 箱号Page页面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContianerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetTabPate("ContainerTable", ContainerTable, Container_);
+        }
+        /// <summary>
         /// 链接集装箱号码
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            Container_.ContainerLink();
+            ((ContainerDelegate)Container_.ContainerLink)();
         }
 
         /// <summary>
@@ -296,7 +287,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            Container_.ContainerClose();
+            ((ContainerDelegate)Container_.ContainerClose)();
         }
 
         /// <summary>
@@ -306,8 +297,32 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            Container_.ContainerLastR();
+            ((ContainerDelegate)Container_.ContainerLastR)();
         }
         #endregion
+
+        /// <summary>
+        /// 清除日志
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton1_Click_1(object sender, EventArgs e)
+        {
+            MainListBox.Items.Clear();
+        }
+
+        /// <summary>
+        /// 写入日志
+        /// </summary>
+        /// <param name="mes"></param>
+        private void Message(string mes)
+        {
+            if (MainListBox.Items.Count > 300)
+            {
+                MainListBox.Items.RemoveAt(0);
+            }
+            MainListBox.Items.Add(mes);
+            MainListBox.SelectedIndex = MainListBox.Items.Count - 1;
+        }
     }
 }

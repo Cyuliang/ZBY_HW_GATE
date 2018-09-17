@@ -6,10 +6,10 @@ namespace ZBY_HW_GATE.Container
 {
     public partial class Container_Window : Form
     {
-        private CLog log = new CLog();
+        private CLog Log_ = new CLog();
         private IEDataBase.InData InData_ = new IEDataBase.InData();
-
         private System.Threading.Timer timer_connect2server;
+
         public delegate void ContainerDelegate(string mes);        
         /// <summary>
         /// 主界面LOG事件
@@ -29,6 +29,7 @@ namespace ZBY_HW_GATE.Container
             Abortbutton.Hide();
             axVECONclient1.Hide();
 
+            //自动链接箱号
             timer_connect2server = new System.Threading.Timer(Connect2server, null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10));
             //初始化按钮颜色
             Linkbutton.BackColor = Color.DarkRed;        
@@ -63,7 +64,7 @@ namespace ZBY_HW_GATE.Container
         /// <param name="e"></param>
         private void AxVECONclient1_OnServerError(object sender, EventArgs e)
         {
-            log.logWarn.Warn("Container Server Error");
+            Log_.logWarn.Warn("Container Server Error");
             Message("Container Server Error");
             Linkbutton.Text = "Link";
             Linkbutton.BackColor = Color.DarkRed;            
@@ -77,7 +78,7 @@ namespace ZBY_HW_GATE.Container
         /// <param name="e"></param>
         private void AxVECONclient1_OnServerDisconnected(object sender, EventArgs e)
         {
-            log.logWarn.Warn("Container Link Disconnected ");
+            Log_.logWarn.Warn("Container Link Disconnected ");
             Message("Container Link Disconnected ");
             StatusDelegate("0");
             Linkbutton.Text = "Link";
@@ -92,7 +93,7 @@ namespace ZBY_HW_GATE.Container
         /// <param name="e"></param>
         private void AxVECONclient1_OnServerConnected(object sender, EventArgs e)
         {
-            log.logInfo.Info("Container Link Success ");
+            Log_.logInfo.Info("Container Link Success ");
             Message("Container Link Success ");
             StatusDelegate("1");
             Linkbutton.Text = "Abort";
@@ -112,7 +113,7 @@ namespace ZBY_HW_GATE.Container
             }
             catch (Exception ex)
             {
-                log.logError.Error("Container link error", ex);
+                Log_.logError.Error("Container link error", ex);
                 Message("Container link error");
             }
         }
@@ -124,14 +125,15 @@ namespace ZBY_HW_GATE.Container
         /// <param name="e"></param>
         private void AxVECONclient1_OnUpdateLPNEvent(object sender, AxVeconclientProj.IVECONclientEvents_OnUpdateLPNEventEvent e)
         {
-            log.logInfo.Info("Container UpdateLPN "+e.triggerTime.ToString()+" "+e.lPN);
+            Log_.logInfo.Info("Container UpdateLPN "+e.triggerTime.ToString()+" "+e.lPN);
             Message("Container UpdateLPN " + e.triggerTime.ToString() + " " + e.lPN);
             BeginInvoke(new ContainerDelegate(ContainerEvent), string.Format("Container UpdateLPN at：{0} Plate：{1}", e.triggerTime.ToString(), e.lPN));
+            InData_.Insert(e.triggerTime, e.lPN);
+
             textBox10.Text = e.triggerTime.ToString();
             textBox11.Text = e.lPN;
             textBox12.Text = e.colorCode.ToString();
             textBox13.Text = e.laneNum.ToString();
-            InData_.Insert(e.triggerTime,e.lPN,string.Empty);
         }
 
         /// <summary>
@@ -141,9 +143,11 @@ namespace ZBY_HW_GATE.Container
         /// <param name="e"></param>
         private void AxVECONclient1_OnNewLPNEvent(object sender, AxVeconclientProj.IVECONclientEvents_OnNewLPNEventEvent e)
         {
-            log.logInfo.Info("Container NewPLN " + e.triggerTime.ToString() + " " + e.lPN);
+            Log_.logInfo.Info("Container NewPLN " + e.triggerTime.ToString() + " " + e.lPN);
             Message("Container NewPLN " + e.triggerTime.ToString() + " " + e.lPN);
             BeginInvoke(new ContainerDelegate(ContainerEvent), string.Format("Container NewPLN at：{0} Plate：{1}", e.triggerTime.ToString(), e.lPN));
+            InData_.Insert(e.triggerTime, e.lPN);
+
             textBox10.Text = e.triggerTime.ToString();
             textBox11.Text = e.lPN;
             textBox12.Text = e.colorCode.ToString();
@@ -157,9 +161,11 @@ namespace ZBY_HW_GATE.Container
         /// <param name="e"></param>
         private void AxVECONclient1_OnCombinedRecognitionResultISO(object sender, AxVeconclientProj.IVECONclientEvents_OnCombinedRecognitionResultISOEvent e)
         {
-            log.logInfo.Info("Container Result " + e.triggerTime.ToString() + " " + e.checkSum1);
+            Log_.logInfo.Info("Container Result " + e.triggerTime.ToString() + " " + e.checkSum1);
             Message("Container Result " + e.triggerTime.ToString() + " " + e.checkSum1);
             BeginInvoke(new ContainerDelegate(ContainerEvent), string.Format("Container Result at：{0} CheckSum：{1}", e.triggerTime.ToString(), e.checkSum1));
+            InData_.Update(e.triggerTime,e.checkSum1);
+
             textBox1.Text = e.laneNum.ToString();
             textBox2.Text = e.triggerTime.ToString();
             textBox3.Text = e.containerNum1;
@@ -214,7 +220,7 @@ namespace ZBY_HW_GATE.Container
         private void Button2_Click(object sender, EventArgs e)
         {
             axVECONclient1.SendLastResults(Properties.Settings.Default.LaneNum);
-            log.logInfo.Info("Get Last Number");
+            Log_.logInfo.Info("Get Last Number");
             Message("Get Last Number");
         }
         /// <summary>
@@ -223,7 +229,7 @@ namespace ZBY_HW_GATE.Container
         public void ContainerLastR()
         {
             axVECONclient1.SendLastResults(Properties.Settings.Default.LaneNum);
-            log.logInfo.Info("Get Last Number");
+            Log_.logInfo.Info("Get Last Number");
             Message("Get Last Number");
         }
         #endregion
@@ -261,14 +267,12 @@ namespace ZBY_HW_GATE.Container
         /// <param name="mes"></param>
         private void Message(string mes)
         {
-            if (LogTextBox.Lines.Length > 100)
+            if(LogListBox.Items.Count>100)
             {
-                LogTextBox.Clear();
+                LogListBox.Items.Clear();
             }
-            LogTextBox.Text += mes + "\r\n";
-            LogTextBox.Focus();//获取焦点
-            LogTextBox.Select(LogTextBox.TextLength, 0);//光标定位到文本最后
-            LogTextBox.ScrollToCaret();//滚动到光标处
+            LogListBox.Items.Add(mes);
+            LogListBox.SelectedIndex = LogListBox.Items.Count - 1;
         }
     }
 }

@@ -85,6 +85,7 @@
             this.toolStripStatusLabel10 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel11 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -423,6 +424,7 @@
             this.toolStrip1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ClosePagetoolStripButton,
+            this.toolStripButton1,
             this.toolStripSeparator1,
             this.toolStripButton2,
             this.toolStripButton3,
@@ -511,70 +513,70 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(93, 17);
             this.toolStripStatusLabel2.Spring = true;
             this.toolStripStatusLabel2.Text = "集装箱";
             // 
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(93, 17);
             this.toolStripStatusLabel3.Spring = true;
             this.toolStripStatusLabel3.Text = "出闸车牌";
             // 
             // toolStripStatusLabel4
             // 
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(93, 17);
             this.toolStripStatusLabel4.Spring = true;
             this.toolStripStatusLabel4.Text = "显示屏";
             // 
             // toolStripStatusLabel5
             // 
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(93, 17);
             this.toolStripStatusLabel5.Spring = true;
             this.toolStripStatusLabel5.Text = "出闸道闸";
             // 
             // toolStripStatusLabel6
             // 
             this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(93, 17);
             this.toolStripStatusLabel6.Spring = true;
             this.toolStripStatusLabel6.Text = "入闸道闸";
             // 
             // toolStripStatusLabel7
             // 
             this.toolStripStatusLabel7.Name = "toolStripStatusLabel7";
-            this.toolStripStatusLabel7.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel7.Size = new System.Drawing.Size(93, 17);
             this.toolStripStatusLabel7.Spring = true;
             this.toolStripStatusLabel7.Text = "身份证读卡器";
             // 
             // toolStripStatusLabel8
             // 
             this.toolStripStatusLabel8.Name = "toolStripStatusLabel8";
-            this.toolStripStatusLabel8.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel8.Size = new System.Drawing.Size(93, 17);
             this.toolStripStatusLabel8.Spring = true;
             this.toolStripStatusLabel8.Text = "本地数据库";
             // 
             // toolStripStatusLabel9
             // 
             this.toolStripStatusLabel9.Name = "toolStripStatusLabel9";
-            this.toolStripStatusLabel9.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel9.Size = new System.Drawing.Size(93, 17);
             this.toolStripStatusLabel9.Spring = true;
             this.toolStripStatusLabel9.Text = "远程服务端";
             // 
             // toolStripStatusLabel10
             // 
             this.toolStripStatusLabel10.Name = "toolStripStatusLabel10";
-            this.toolStripStatusLabel10.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel10.Size = new System.Drawing.Size(93, 17);
             this.toolStripStatusLabel10.Spring = true;
             this.toolStripStatusLabel10.Text = "本地服务端";
             // 
             // toolStripStatusLabel11
             // 
             this.toolStripStatusLabel11.Name = "toolStripStatusLabel11";
-            this.toolStripStatusLabel11.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel11.Size = new System.Drawing.Size(93, 17);
             this.toolStripStatusLabel11.Spring = true;
             this.toolStripStatusLabel11.Text = "本地客户端";
             // 
@@ -583,6 +585,17 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.ToolTipText = "清除日志";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
             // Form1
             // 
@@ -674,6 +687,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel9;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel10;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel11;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 
