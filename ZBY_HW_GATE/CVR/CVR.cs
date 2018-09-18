@@ -9,12 +9,8 @@ namespace ZBY_HW_GATE.CVR
         private volatile bool STATE;
         public Action<byte[], byte[], byte[], byte[], byte[], byte[], byte[], byte[],byte[]> FillDataActive;
         public Action<byte[], int> FillDataBmpActive;
-        public delegate void MessageDelegate(string mes);
-        public MessageDelegate messageDelegate;
-
-        public CVR()
-        {
-        }
+        public delegate void CVRDelegate(string mes);
+        public CVRDelegate MessageDelegate;
 
         /// <summary>
         /// 初始化
@@ -27,18 +23,18 @@ namespace ZBY_HW_GATE.CVR
                 if (ret == 1)
                 {
                     Log_.logInfo.Info("CVR InitComm Success");
-                    messageDelegate("CVR InitComm Success");       
+                    MessageDelegate("CVR InitComm Success");       
                 }
                 else
                 {
                     Log_.logWarn.Warn("CVR InitComm Fail");
-                    messageDelegate("CVR InitComm Fail");
+                    MessageDelegate("CVR InitComm Fail");
                 }
             }
             catch (Exception ex)
             {
                 Log_.logError.Error("CVR InitComm error", ex);
-                messageDelegate("CVR InitComm error");
+                MessageDelegate("CVR InitComm error");
             }
         }
 
@@ -56,26 +52,26 @@ namespace ZBY_HW_GATE.CVR
                     if (readContent == 1)
                     {
                         Log_.logInfo.Info("CVR Read Cards Success");
-                        messageDelegate("CVR Read Cards Success");
+                        MessageDelegate("CVR Read Cards Success");
                         FillData();
                     }
                     else
                     {
                         Log_.logWarn.Warn("CVR Read Cards Faile");
-                        messageDelegate("CVR Read Cards Faile");
+                        MessageDelegate("CVR Read Cards Faile");
                     }
                 }
                 else
                 {
                     Log_.logWarn.Warn("CVR Authenticate error");
-                    messageDelegate("CVR Authenticate error");
+                    MessageDelegate("CVR Authenticate error");
                 }
             }
             catch (Exception ex)
             {
 
                 Log_.logError.Error("CVR Read Data Error", ex);
-                messageDelegate("CVR Read Data Error");
+                MessageDelegate("CVR Read Data Error");
             }
         }
 
@@ -99,13 +95,38 @@ namespace ZBY_HW_GATE.CVR
                     if (readContent == 1)
                     {
                         Log_.logInfo.Info("CVR Read Cards Success");
-                        messageDelegate("CVR Read Cards Success");
+                        MessageDelegate("CVR Read Cards Success");
                         FillData();
                     }
                 }
-                System.Threading.Thread.Sleep(2000);
-                messageDelegate("CVR Read Cards Success");
+                System.Threading.Thread.Sleep(3000);
+                MessageDelegate("CVR Read Cards While");
             }            
+        }
+
+        /// <summary>
+        /// 定时读取
+        /// </summary>
+        public void AuthenticateFor()
+        {
+            int i = 0;
+            while(i<Properties.Settings.Default.CVRReadWhile)
+            {
+                int authenticate = SafeNativeMethods.CVR_Authenticate();
+                if (authenticate == 1)
+                {
+                    int readContent = SafeNativeMethods.CVR_Read_FPContent();
+                    if (readContent == 1)
+                    {
+                        Log_.logInfo.Info("CVR Read Cards Success");
+                        MessageDelegate("CVR Read Cards Success");
+                        FillData();
+                    }
+                }
+                i++;
+                System.Threading.Thread.Sleep(2000);
+                MessageDelegate("CVR Read Cards For");
+            }
         }
 
         /// <summary>
@@ -116,7 +137,7 @@ namespace ZBY_HW_GATE.CVR
             if(SafeNativeMethods.CVR_CloseComm()==1)
             {
                 Log_.logInfo.Info("CVR Close Success");
-                messageDelegate("CVR Close Success");
+                MessageDelegate("CVR Close Success");
             }
         }
 
@@ -188,7 +209,7 @@ namespace ZBY_HW_GATE.CVR
                 if (nStart != -1) bCivic = false;
 
                 Log_.logInfo.Info(string.Format("CVR Data Name：{0}   Number：{1}", System.Text.Encoding.GetEncoding("GB2312").GetString(name), System.Text.Encoding.GetEncoding("GB2312").GetString(number).Replace("\0", "").Trim()));
-                messageDelegate(string.Format("CVR Data Name：{0}   Number：{1}", System.Text.Encoding.GetEncoding("GB2312").GetString(name), System.Text.Encoding.GetEncoding("GB2312").GetString(number).Replace("\0", "").Trim()));
+                MessageDelegate(string.Format("CVR Data Name：{0}   Number：{1}", System.Text.Encoding.GetEncoding("GB2312").GetString(name), System.Text.Encoding.GetEncoding("GB2312").GetString(number).Replace("\0", "").Trim()));
 
                 if (bCivic)
                 {
@@ -200,7 +221,7 @@ namespace ZBY_HW_GATE.CVR
             catch (Exception ex)
             {
                 Log_.logError.Error("CVR Read Data error", ex);
-                messageDelegate("CVR Read Data error");
+                MessageDelegate("CVR Read Data error");
             }
         }
     }

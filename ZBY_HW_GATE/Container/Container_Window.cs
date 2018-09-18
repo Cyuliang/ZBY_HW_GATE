@@ -10,14 +10,9 @@ namespace ZBY_HW_GATE.Container
         private IEDataBase.InData InData_ = new IEDataBase.InData();
         private System.Threading.Timer timer_connect2server;
 
+        private delegate void UpdateUiDelegate(string mes);
         public delegate void ContainerDelegate(string mes);        
-        /// <summary>
-        /// 主界面LOG事件
-        /// </summary>
         public event ContainerDelegate ContainerEvent;
-        /// <summary>
-        /// 链接状态事件
-        /// </summary>
         public ContainerDelegate StatusDelegate;
 
         public Container_Window()
@@ -45,6 +40,22 @@ namespace ZBY_HW_GATE.Container
             axVECONclient1.OnServerConnected += AxVECONclient1_OnServerConnected;
             axVECONclient1.OnServerDisconnected += AxVECONclient1_OnServerDisconnected;
             axVECONclient1.OnServerError += AxVECONclient1_OnServerError;
+        }
+
+        /// <summary>
+        /// 发送数据到后台
+        /// </summary>
+        public void SendHttp()
+        {
+
+        }
+
+        /// <summary>
+        /// 查询本地数据库
+        /// </summary>
+        public void FindData()
+        {
+
         }
 
         /// <summary>
@@ -267,12 +278,19 @@ namespace ZBY_HW_GATE.Container
         /// <param name="mes"></param>
         private void Message(string mes)
         {
-            if(LogListBox.Items.Count>100)
+            if(LogListBox.InvokeRequired)
             {
-                LogListBox.Items.Clear();
+                LogListBox.Invoke(new UpdateUiDelegate(Message), new object[] { mes });
             }
-            LogListBox.Items.Add(mes);
-            LogListBox.SelectedIndex = LogListBox.Items.Count - 1;
+            else
+            {
+                if (LogListBox.Items.Count > 100)
+                {
+                    LogListBox.Items.Clear();
+                }
+                LogListBox.Items.Add(mes);
+                LogListBox.SelectedIndex = LogListBox.Items.Count - 1;
+            }
         }
     }
 }

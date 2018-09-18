@@ -68,6 +68,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ClosePagetoolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -85,7 +86,11 @@
             this.toolStripStatusLabel10 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel11 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.InitToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.ReadToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.CloseToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.ForReadToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -429,7 +434,12 @@
             this.toolStripButton2,
             this.toolStripButton3,
             this.toolStripButton4,
-            this.toolStripSeparator2});
+            this.toolStripSeparator2,
+            this.InitToolStripButton,
+            this.ReadToolStripButton,
+            this.ForReadToolStripButton,
+            this.CloseToolStripButton,
+            this.toolStripSeparator3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(954, 25);
@@ -447,6 +457,17 @@
             this.ClosePagetoolStripButton.Text = "ClosePage";
             this.ClosePagetoolStripButton.ToolTipText = "关闭Page页面";
             this.ClosePagetoolStripButton.Click += new System.EventHandler(this.ToolStripButton1_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.ToolTipText = "清除日志";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
             // toolStripSeparator1
             // 
@@ -586,16 +607,54 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // toolStripButton1
+            // InitToolStripButton
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.ToolTipText = "清除日志";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
+            this.InitToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.InitToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("InitToolStripButton.Image")));
+            this.InitToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.InitToolStripButton.Name = "InitToolStripButton";
+            this.InitToolStripButton.Size = new System.Drawing.Size(30, 22);
+            this.InitToolStripButton.Text = "Init";
+            this.InitToolStripButton.ToolTipText = "初始化身份证读卡器";
+            this.InitToolStripButton.Click += new System.EventHandler(this.InitToolStripButton_Click);
+            // 
+            // ReadToolStripButton
+            // 
+            this.ReadToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ReadToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ReadToolStripButton.Image")));
+            this.ReadToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ReadToolStripButton.Name = "ReadToolStripButton";
+            this.ReadToolStripButton.Size = new System.Drawing.Size(42, 22);
+            this.ReadToolStripButton.Text = "Read";
+            this.ReadToolStripButton.ToolTipText = "读取身份证信息";
+            this.ReadToolStripButton.Click += new System.EventHandler(this.ReadToolStripButton_Click);
+            // 
+            // CloseToolStripButton
+            // 
+            this.CloseToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.CloseToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseToolStripButton.Image")));
+            this.CloseToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CloseToolStripButton.Name = "CloseToolStripButton";
+            this.CloseToolStripButton.Size = new System.Drawing.Size(44, 22);
+            this.CloseToolStripButton.Text = "Close";
+            this.CloseToolStripButton.ToolTipText = "关闭读卡器";
+            this.CloseToolStripButton.Click += new System.EventHandler(this.CloseToolStripButton_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // ForReadToolStripButton
+            // 
+            this.ForReadToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ForReadToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ForReadToolStripButton.Image")));
+            this.ForReadToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ForReadToolStripButton.Name = "ForReadToolStripButton";
+            this.ForReadToolStripButton.Size = new System.Drawing.Size(61, 22);
+            this.ForReadToolStripButton.Text = "ForRead";
+            this.ForReadToolStripButton.ToolTipText = "限时循环读取";
+            this.ForReadToolStripButton.Click += new System.EventHandler(this.ForReadToolStripButton_Click);
             // 
             // Form1
             // 
@@ -688,6 +747,11 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel10;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel11;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton InitToolStripButton;
+        private System.Windows.Forms.ToolStripButton ReadToolStripButton;
+        private System.Windows.Forms.ToolStripButton CloseToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton ForReadToolStripButton;
     }
 }
 

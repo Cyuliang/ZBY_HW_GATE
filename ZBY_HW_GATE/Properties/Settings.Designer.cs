@@ -598,5 +598,14 @@ namespace ZBY_HW_GATE.Properties {
                 return ((string)(this["LocalIp"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public int CVRReadWhile {
+            get {
+                return ((int)(this["CVRReadWhile"]));
+            }
+        }
     }
 }

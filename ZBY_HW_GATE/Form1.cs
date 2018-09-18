@@ -30,7 +30,9 @@ namespace ZBY_HW_GATE
         private TabPage OutTable = new TabPage("出闸数据库");
         private TabPage AboutTable = new TabPage("系统说明");
 
+        private delegate void UpdateUiDelegate(string mes);
         private delegate void ContainerDelegate();
+        private delegate void CVRDelegate();
         private delegate void InDataDelegate();
 
         /// <summary>
@@ -317,12 +319,59 @@ namespace ZBY_HW_GATE
         /// <param name="mes"></param>
         private void Message(string mes)
         {
-            if (MainListBox.Items.Count > 300)
+            if(MainListBox.InvokeRequired)
             {
-                MainListBox.Items.RemoveAt(0);
+                MainListBox.Invoke(new UpdateUiDelegate(Message),new object[]{ mes});
             }
-            MainListBox.Items.Add(mes);
-            MainListBox.SelectedIndex = MainListBox.Items.Count - 1;
+            else
+            {
+                if (MainListBox.Items.Count > 300)
+                {
+                    MainListBox.Items.RemoveAt(0);
+                }
+                MainListBox.Items.Add(mes);
+                MainListBox.SelectedIndex = MainListBox.Items.Count - 1;
+            }
+        }
+
+        /// <summary>
+        /// 初始化身份证读卡器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InitToolStripButton_Click(object sender, EventArgs e)
+        {
+            ((CVRDelegate)CVR_.Init)();
+        }
+
+        /// <summary>
+        /// 读取信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReadToolStripButton_Click(object sender, EventArgs e)
+        {
+            ((CVRDelegate)CVR_.Read)();
+        }
+
+        /// <summary>
+        /// 关闭读卡器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CloseToolStripButton_Click(object sender, EventArgs e)
+        {
+            ((CVRDelegate)CVR_.CloseC)();
+        }
+
+        /// <summary>
+        /// 定时循环读卡
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ForReadToolStripButton_Click(object sender, EventArgs e)
+        {
+            ((CVRDelegate)CVR_.ForRead)();
         }
     }
 }
