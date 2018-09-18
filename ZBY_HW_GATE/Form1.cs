@@ -6,6 +6,7 @@ namespace ZBY_HW_GATE
 {
     public partial class Form1 : Form
     {
+        private CLog Log_ = new CLog();
         private Container.Container_Window Container_ = new Container.Container_Window();
         private Plate.Plate_Window Plate_ = new Plate.Plate_Window();
         private CVR.CVR_Window CVR_ = new CVR.CVR_Window();
@@ -47,6 +48,7 @@ namespace ZBY_HW_GATE
             ClosePagetoolStripButton.Enabled = false;
             Container_.StatusDelegate += ContainerStatuesDelegate;
             Container_.ContainerEvent += Container__ContainerEvent;
+            CVR_.FillDataUi += Message;
         }
 
         /// <summary>
@@ -96,7 +98,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void InToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ((InDataDelegate)InData_.Init_Window_Show)();
+            new InDataDelegate(InData_.Init_Window_Show).BeginInvoke(null,null);
             SetTabPate("InTable", InTable, InData_);
         }
 
@@ -107,6 +109,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Log_.logInfo.Info(TimetoolStripStatusLabel.Text);
             Container_.Disconnect();
             Gate_.delegatesStopDoorState();
             Application.ExitThread();

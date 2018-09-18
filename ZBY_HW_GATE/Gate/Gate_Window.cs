@@ -22,7 +22,8 @@ namespace ZBY_HW_GATE.Gate
         /// </summary>
         public delegate void StopDoorState();
         public StopDoorState delegatesStopDoorState;
-        
+        private delegate void AsynUpdateUi(string mes);
+
         public Gate_Window()
         {
             InitializeComponent();
@@ -46,14 +47,19 @@ namespace ZBY_HW_GATE.Gate
         /// <param name="mes"></param>
         private void GetMessage(string mes)
         {
-            if (LogTextBox.Lines.Length > 100)
+            if (InvokeRequired)
             {
-                LogTextBox.Clear();
+                LogListBox.Invoke(new AsynUpdateUi(GetMessage), new object[] { mes });
             }
-            LogTextBox.Text += mes + "\r\n";
-            LogTextBox.Focus();//获取焦点
-            LogTextBox.Select(LogTextBox.TextLength, 0);//光标定位到文本最后
-            LogTextBox.ScrollToCaret();//滚动到光标处
+            else
+            {
+                if (LogListBox.Items.Count > 100)
+                {
+                    LogListBox.Items.Clear();
+                }
+                LogListBox.Items.Add(mes);
+                LogListBox.SelectedIndex = LogListBox.Items.Count - 1;
+            }
         }
 
         /// <summary>

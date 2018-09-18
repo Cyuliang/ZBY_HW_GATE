@@ -18,6 +18,8 @@ namespace ZBY_HW_GATE.LED
         private LedDelegate _UnInit;
         private Func<string[],int> _AddText;
 
+        private delegate void AsynUpdateUi(string mes);
+
         public LED_Window()
         {
             InitializeComponent();
@@ -56,14 +58,19 @@ namespace ZBY_HW_GATE.LED
         /// <param name="mes"></param>
         private void ResultMessage(string mes)
         {
-            if(mmo_FunResultInfo.Lines.Length>100)
+            if (InvokeRequired)
             {
-                mmo_FunResultInfo.Clear();
+                LogListBox.Invoke(new AsynUpdateUi(ResultMessage), new object[] { mes });
             }
-            mmo_FunResultInfo.Text += mes+"\r\n";
-            mmo_FunResultInfo.Focus();//获取焦点
-            mmo_FunResultInfo.Select(mmo_FunResultInfo.TextLength, 0);//光标定位到文本最后
-            mmo_FunResultInfo.ScrollToCaret();//滚动到光标处
+            else
+            {
+                if (LogListBox.Items.Count > 100)
+                {
+                    LogListBox.Items.Clear();
+                }
+                LogListBox.Items.Add(mes);
+                LogListBox.SelectedIndex = LogListBox.Items.Count - 1;
+            }
         }
 
         /// <summary>

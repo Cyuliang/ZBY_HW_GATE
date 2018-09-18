@@ -12,10 +12,11 @@ namespace ZBY_HW_GATE.CVR
         CVR CVR_ = new CVR();
         private bool ReadForBooen = true;
 
+        public Action<string> FillDataUi;
         private delegate void AsynUpdateUi(string mes);
         private delegate void CVRDelegate();
-        private CVRDelegate Authenticatefor;
         private delegate void CVRvolatile(bool state);
+        private CVRDelegate Authenticatefor;
         private CVRDelegate InitDelegate;
         private CVRDelegate AuthenticateDelegate;
         private CVRDelegate BeginInvokeAuthentiacte;
@@ -120,6 +121,7 @@ namespace ZBY_HW_GATE.CVR
         /// <param name="bCivic"></param>
         public void FillData(byte[] name,byte[] sex,byte[] peopleNation,byte[] birthday,byte[] number,byte[] address,byte[] signdate,byte[] validtermOfStart,byte[] validtermOfEnd)
         {
+            FillDataUi(string.Format("姓名：{0} ID：{1}" ,System.Text.Encoding.GetEncoding("GB2312").GetString(name), System.Text.Encoding.GetEncoding("GB2312").GetString(number).Replace("\0", "").Trim()));
             textBox1.Text= System.Text.Encoding.GetEncoding("GB2312").GetString(name);
             textBox2.Text= System.Text.Encoding.GetEncoding("GB2312").GetString(sex).Replace("\0", "").Trim();
             textBox8.Text= System.Text.Encoding.GetEncoding("GB2312").GetString(peopleNation).Replace("\0", "").Trim();
@@ -128,7 +130,7 @@ namespace ZBY_HW_GATE.CVR
             textBox5.Text= System.Text.Encoding.GetEncoding("GB2312").GetString(address).Replace("\0", "").Trim();
             textBox6.Text= System.Text.Encoding.GetEncoding("GB2312").GetString(signdate).Replace("\0", "").Trim();
             textBox7.Text= System.Text.Encoding.GetEncoding("GB2312").GetString(validtermOfStart).Replace("\0", "").Trim() + "-" + System.Text.Encoding.GetEncoding("GB2312").GetString(validtermOfEnd).Replace("\0", "").Trim();                    
-        }
+        }       
 
         /// <summary>
         /// 读取头像
