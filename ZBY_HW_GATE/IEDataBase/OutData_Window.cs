@@ -182,5 +182,11 @@ namespace ZBY_HW_GATE.IEDataBase
                 MessageBox.Show("报表为空,无表格需要导出", "提示", MessageBoxButtons.OK);
             }
         }
+
+        private void OutData_Window_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            Hide();
+        }
     }
 }

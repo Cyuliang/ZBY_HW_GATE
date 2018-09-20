@@ -9,7 +9,9 @@ namespace ZBY_HW_GATE.DataBase
     public partial class DataBase_Window : Form
     {
         public static DataBase_Window DataBase_window;
-        CLog log = new CLog();
+        private CLog Log_ = new CLog();
+        private delegate void UpdateUiDelegate();
+
 
         public DataBase_Window()
         {
@@ -25,20 +27,27 @@ namespace ZBY_HW_GATE.DataBase
         /// <param name="e"></param>
         private void DataBase_Window_Load(object sender, System.EventArgs e)
         {
-            Init();
+            Init_ShowWindow();
             if(FindTextBox.Text==string.Empty)
             {
                 FindButton.Enabled = false;
             }
         }
 
-        private void Init()
+        public void Init_ShowWindow()
         {
-            dataSet1 = DataBase.MySqlHelper.GetDataSet(DataBase.MySqlHelper.Conn, CommandType.Text, "select * from hw.gate", null);
-            bindingSource1.DataSource = dataSet1.Tables[0];
-            bindingNavigator1.BindingSource = bindingSource1;
-            dataGridView1.DataSource = bindingSource1;
-            dataGridView1.Columns[0].Visible = false;
+            if (dataGridView1.InvokeRequired)
+            {
+                dataGridView1.Invoke(new UpdateUiDelegate(Init_ShowWindow), new object[] { });
+            }
+            else
+            {
+                dataSet1 = DataBase.MySqlHelper.GetDataSet(DataBase.MySqlHelper.Conn, CommandType.Text, "select * from hw.gate", null);
+                bindingSource1.DataSource = dataSet1.Tables[0];
+                bindingNavigator1.BindingSource = bindingSource1;
+                dataGridView1.DataSource = bindingSource1;
+                dataGridView1.Columns[0].Visible = false;
+            }
         }
 
         /// <summary>
@@ -119,13 +128,13 @@ namespace ZBY_HW_GATE.DataBase
                 {
                     string drop = string.Format("DELETE FROM `hw`.`gate` WHERE (`Id` = '{0}')", dataGridView1.Rows[rowindex].Cells[0].Value.ToString());
                     MySqlHelper.ExecuteNonQuery(MySqlHelper.Conn, System.Data.CommandType.Text, drop, null);
-                    Init();
-                    log.logInfo.Info(drop);
+                    Init_ShowWindow();
+                    Log_.logInfo.Info(drop);
                     MessageBox.Show("Delete Success!");
                 }
                 catch (Exception ex)
                 {
-                    log.logError.Error("Delete Fail", ex);
+                    Log_.logError.Error("Delete Fail", ex);
                 }
             }
             else if (but == DialogResult.No)
@@ -144,7 +153,7 @@ namespace ZBY_HW_GATE.DataBase
             dataGridView1.DataSource = MySqlHelper.GetDataSet(MySqlHelper.Conn, System.Data.CommandType.Text, "select * from gate", null).Tables[0].DefaultView;
             DataItem dataItem = new DataItem();
             dataItem.ShowDialog();
-            Init();
+            Init_ShowWindow();
             dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1];
         }
 
@@ -159,7 +168,7 @@ namespace ZBY_HW_GATE.DataBase
             DataItem dataItem = new DataItem();
             dataItem.UpdataUi(int.Parse(dataGridView1.Rows[rowindex].Cells[0].Value.ToString()));
             dataItem.ShowDialog();
-            Init();
+            Init_ShowWindow();
             dataGridView1.CurrentCell = dataGridView1.Rows[rowindex].Cells[1];
         }
 
@@ -267,6 +276,12 @@ namespace ZBY_HW_GATE.DataBase
                              // if (fileSaved && System.IO.File.Exists(saveFileName)) System.Diagnostics.Process.Start(saveFileName); //打开EXCEL  
                 MessageBox.Show("导出文件成功", "提示", MessageBoxButtons.OK);
             }
+        }
+
+        private void DataBase_Window_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            Hide();
         }
     }
 }

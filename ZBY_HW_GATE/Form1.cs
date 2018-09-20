@@ -15,6 +15,7 @@ namespace ZBY_HW_GATE
         private DataBase.DataBase_Window DataBase_ = new DataBase.DataBase_Window();
         private IEDataBase.InData_Window InData_ = new IEDataBase.InData_Window();
         private IEDataBase.OutData_Window OutData_ = new IEDataBase.OutData_Window();
+        private Http.Http_Window Http_ = new Http.Http_Window();
 
         private TabPage ContainerTable = new TabPage("集装箱");
         private TabPage PlateTable = new TabPage("电子车牌");
@@ -35,6 +36,8 @@ namespace ZBY_HW_GATE
         private delegate void ContainerDelegate();
         private delegate void CVRDelegate();
         private delegate void InDataDelegate();
+        private delegate void LocalDataDelegate();
+        private delegate void PlateDelegate();
 
         /// <summary>
         /// 启动时间
@@ -49,7 +52,9 @@ namespace ZBY_HW_GATE
             Container_.StatusDelegate += ContainerStatuesDelegate;
             Container_.ContainerEvent += Container__ContainerEvent;
             CVR_.FillDataUi += Message;
-        }
+            Plate_.SetPlateStates += PlateStates;
+            Plate_.PlateResultEvent += Plate__PlateResultEvent;
+        } 
 
         /// <summary>
         /// 车牌
@@ -88,7 +93,8 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void LocalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           SetTabPate("LocalTable", LocalTable, DataBase_);
+            new LocalDataDelegate(DataBase_.Init_ShowWindow)();
+            SetTabPate("LocalTable", LocalTable, DataBase_);
         }
 
         /// <summary>
@@ -98,7 +104,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void InToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new InDataDelegate(InData_.Init_Window_Show).BeginInvoke(null,null);
+            new InDataDelegate(InData_.Init_Window_Show)();
             SetTabPate("InTable", InTable, InData_);
         }
 
@@ -241,6 +247,7 @@ namespace ZBY_HW_GATE
         }
 
         #region//集装箱
+
         /// <summary>
         /// 集装箱数据Log
         /// </summary>
@@ -304,8 +311,138 @@ namespace ZBY_HW_GATE
         {
             ((ContainerDelegate)Container_.ContainerLastR)();
         }
+
         #endregion
 
+        #region//车牌
+
+        /// <summary>
+        /// 车牌结果
+        /// </summary>
+        /// <param name="resule"></param>
+        private void Plate__PlateResultEvent(string resule)
+        {
+            Message(resule);
+        }
+
+        /// <summary>
+        /// 车牌链接状态
+        /// </summary>
+        /// <param name="state"></param>
+        private void PlateStates(uint state)
+        {
+            if(state==1)
+            {
+                toolStripStatusLabel3.BackColor = Color.DarkOrange;
+            }
+            if(state==0)
+            {
+                toolStripStatusLabel3.BackColor = Color.DarkRed;
+            }
+        }
+
+
+        /// <summary>
+        /// 链接车牌
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlateLinktoolStripButton_Click(object sender, EventArgs e)
+        {
+            ((PlateDelegate)Plate_.PlateLink).BeginInvoke(null, null);
+        }
+
+        /// <summary>
+        /// 断开车牌
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlateAborttoolStripButton_Click(object sender, EventArgs e)
+        {
+            ((PlateDelegate)Plate_.PlateAbort)();
+        }
+
+        /// <summary>
+        /// 手动触发
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlateTiggerToolStripButton_Click(object sender, EventArgs e)
+        {
+            ((PlateDelegate)Plate_.PlateTigger)();
+        }
+
+        /// <summary>
+        /// 手动抬杆
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlateLiftingtoolStripButton_Click(object sender, EventArgs e)
+        {
+            ((PlateDelegate)Plate_.PlateLifting)();
+        }
+
+        /// <summary>
+        /// 发送485
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlateTransmissionToolStripButton_Click(object sender, EventArgs e)
+        {
+            ((PlateDelegate)Plate_.PlateSend)();
+        }
+
+        /// <summary>
+        /// 搜索设备
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlateSearchToolStripButton_Click(object sender, EventArgs e)
+        {
+            ((PlateDelegate)Plate_.PlateSera).BeginInvoke(null, null);
+        }
+
+        /// <summary>
+        /// 设置图片保存路径
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlateSetPathToolStripButton_Click(object sender, EventArgs e)
+        {
+            ((PlateDelegate)Plate_.PlateSetPath)();
+        }
+
+        /// <summary>
+        /// 绑定网卡
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlateSetIpToolStripButton_Click(object sender, EventArgs e)
+        {
+            ((PlateDelegate)Plate_.PlateSetIp)();
+        }
+
+        /// <summary>
+        /// 打开视频
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlateOpenPlayToolStripButton_Click(object sender, EventArgs e)
+        {
+            ((PlateDelegate)Plate_.PlateOpenPlay)();
+        }
+
+        /// <summary>
+        /// 关闭视频
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlateClosePlayToolStripButton_Click(object sender, EventArgs e)
+        {
+            ((PlateDelegate)Plate_.PlateClosePlay)();
+        }
+
+        #endregion
         /// <summary>
         /// 清除日志
         /// </summary>
@@ -375,6 +512,16 @@ namespace ZBY_HW_GATE
         private void ForReadToolStripButton_Click(object sender, EventArgs e)
         {
             ((CVRDelegate)CVR_.ForRead)();
+        }
+
+        /// <summary>
+        /// http
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void hTTPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetTabPate("HttpTable", HttpTable,Http_ );
         }
     }
 }

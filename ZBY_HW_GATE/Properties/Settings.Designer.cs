@@ -607,5 +607,14 @@ namespace ZBY_HW_GATE.Properties {
                 return ((int)(this["CVRReadWhile"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.87.216.31:19090/ProsGardenCar")]
+        public string HttpS {
+            get {
+                return ((string)(this["HttpS"]));
+            }
+        }
     }
 }

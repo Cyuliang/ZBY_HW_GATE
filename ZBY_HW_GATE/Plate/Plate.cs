@@ -223,6 +223,11 @@ namespace ZBY_HW_GATE.Plate
                 GetmessageAction(DeviceInfo.chIp.ToString());
                 log.logInfo.Info(DeviceInfo.chIp.ToString());
             }
+            else
+            {
+                GetmessageAction("Not Find Device");
+                log.logInfo.Info("Not Find Device");
+            }
         }
 
         /// <summary>

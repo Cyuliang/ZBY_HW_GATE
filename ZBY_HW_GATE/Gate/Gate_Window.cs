@@ -6,23 +6,14 @@ namespace ZBY_HW_GATE.Gate
 {
     public partial class Gate_Window : Form
     {
-        private CLog log = new CLog();
+        private CLog Log_ = new CLog();
         private Gate Gate_ = new Gate();
 
-        /// <summary>
-        /// 开门委托类
-        /// </summary>
-        /// <param name="SN">SN号</param>
-        /// <returns></returns>
         public delegate int OpenGateDelete(string Ip, int Port, String SN);
-        private OpenGateDelete delegatesOpenGate;
-
-        /// <summary>
-        /// 关闭控制器监听委托类
-        /// </summary>
         public delegate void StopDoorState();
-        public StopDoorState delegatesStopDoorState;
         private delegate void AsynUpdateUi(string mes);
+        private OpenGateDelete delegatesOpenGate;
+        public StopDoorState delegatesStopDoorState;
 
         public Gate_Window()
         {
@@ -74,13 +65,13 @@ namespace ZBY_HW_GATE.Gate
                 if (e.SN == Int32.Parse(Properties.Settings.Default.InDoorSN))
                 {
                     label7.BackColor = Color.DarkGreen;
-                    log.logInfo.Info(string.Format("{0} OnLine",e.SN));
+                    Log_.logInfo.Info(string.Format("{0} OnLine",e.SN));
                     GetMessage(string.Format("{0} OnLine", e.SN));
                 }
                 if (e.SN == Int32.Parse(Properties.Settings.Default.OutDoorSN))
                 {
                     label8.BackColor = Color.DarkGreen;
-                    log.logInfo.Info(string.Format("{0} OnLine", e.SN));
+                    Log_.logInfo.Info(string.Format("{0} OnLine", e.SN));
                     GetMessage(string.Format("{0} OnLine", e.SN));
                 }
             }
@@ -89,13 +80,13 @@ namespace ZBY_HW_GATE.Gate
                 if (e.SN == Int32.Parse(Properties.Settings.Default.InDoorSN))
                 {
                     label7.BackColor = Color.DarkRed;
-                    log.logInfo.Info(string.Format("{0} Drop line ", e.SN));
+                    Log_.logWarn.Warn(string.Format("{0} Drop line ", e.SN));
                     GetMessage(string.Format("{0} Drop line ", e.SN));
                 }
                 if (e.SN == Int32.Parse(Properties.Settings.Default.OutDoorSN))
                 {
                     label8.BackColor = Color.DarkRed;
-                    log.logInfo.Info(string.Format("{0} Drop line ", e.SN));
+                    Log_.logWarn.Warn(string.Format("{0} Drop line ", e.SN));
                     GetMessage(string.Format("{0} Drop line ", e.SN));
                 }
             }
@@ -112,19 +103,19 @@ namespace ZBY_HW_GATE.Gate
             {
                 if (delegatesOpenGate(textBox1.Text, int.Parse(textBox2.Text), textBox3.Text) == -1)
                 {
-                    log.logInfo.Info("Open In Door Error");
+                    Log_.logWarn.Warn("Open In Door Error");
                     GetMessage("Open In Door Error");
                 }
                 else
                 {
-                    log.logInfo.Info("Open In Door Success");
+                    Log_.logInfo.Info("Open In Door Success");
                     GetMessage("Open In Door Success");
                 }
             }
             catch (Exception ex)
             {
 
-                log.logError.Error("Open In Door Error", ex);
+                Log_.logError.Error("Open In Door Error", ex);
                 GetMessage("Open In Door Error");
             }
         }
@@ -140,18 +131,18 @@ namespace ZBY_HW_GATE.Gate
             {
                 if (delegatesOpenGate(textBox4.Text, int.Parse(textBox5.Text), textBox6.Text) == -1)
                 {
-                    log.logInfo.Info("Open Out Door Error");
+                    Log_.logWarn.Warn("Open Out Door Error");
                     GetMessage("Open Out Door Error");
                 }
                 else
                 {
-                    log.logInfo.Info("Open Out Door Success");
+                    Log_.logInfo.Info("Open Out Door Success");
                     GetMessage("Open Out Door Success");
                 }
             }
             catch (Exception ex)
             {
-                log.logError.Error("Open Out Door Error", ex);
+                Log_.logError.Error("Open Out Door Error", ex);
                 GetMessage("Open Out Door Error");
             }
         }

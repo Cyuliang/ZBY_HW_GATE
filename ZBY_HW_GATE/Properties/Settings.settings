@@ -197,5 +197,8 @@
     <Setting Name="CVRReadWhile" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">60</Value>
     </Setting>
+    <Setting Name="HttpS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://10.87.216.31:19090/ProsGardenCar</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

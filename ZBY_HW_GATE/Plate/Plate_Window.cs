@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
-using System.Text;
-using System.Globalization;
 using System.IO;
 
 namespace ZBY_HW_GATE.Plate
 {
     public partial class Plate_Window : Form
     {
-        private CLog log = new CLog();
+        private CLog Log_ = new CLog();
         private Plate Plate_ = new Plate();
+        private System.Threading.Timer timer_PlateLink;
 
-        private delegate void PlateDelgate();
-        private PlateDelgate PlateStar;
-        private PlateDelgate PlateSettiger;
-        private PlateDelgate PlateQuitDevice;
-        private PlateDelgate PlateSearchDevice;
+        public delegate void SetPlateDelegate(uint state);
+        private delegate void SetRelayCloseDelegate();
+        private delegate void UpdateUiDelegate(string mes);
+        private delegate void PlateDelegate();
+        public delegate void PlateResultDelegate(string resule);
+        public event PlateResultDelegate PlateResultEvent;
 
-        private delegate void SetRelayCloseDelgate();
-        private SetRelayCloseDelgate setRelayClose;    
-
+        public SetPlateDelegate SetPlateStates;
+        private PlateDelegate PlateStar;
+        private PlateDelegate PlateSettiger;
+        private PlateDelegate PlateQuitDevice;
+        private PlateDelegate PlateSearchDevice;
+        private SetRelayCloseDelegate setRelayClose;
         private Action<bool> PlayAction;
         private Action<string> Send485Action;
         private Action<string> SetIpAction;
@@ -30,6 +33,7 @@ namespace ZBY_HW_GATE.Plate
         {
             InitializeComponent();
 
+            timer_PlateLink = new System.Threading.Timer(PlateTimeLink, null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10));
             OnLineLable.BackColor = Color.DarkRed;
             Plate_.PlateCallBack = new Action<string, uint>(PlateCallBack);
             PlateStar += Plate_.CallbackFuntion;
@@ -45,6 +49,31 @@ namespace ZBY_HW_GATE.Plate
             SetIpAction = new Action<string>(Plate_.SetIpNetwork);
             SetSaveImg = new Action<string>(Plate_.SetSavrImagePath);
             PlateSearchDevice += Plate_.SearchDeviceList;
+
+            PlateSetIp();
+            PlateSetPath();
+
+            LinkButton.Hide();
+            AbortButton.Hide();
+            TiggerButton.Hide();
+            LinkButton.Hide();
+            LiftingButton.Hide();
+            TransmissionButton.Hide();
+            SearchButton.Hide();
+            SetIpButton.Hide();
+            SetPathButton.Hide();
+            OpenButton.Hide();
+            CloseButton.Hide();
+            OnLineLable.Hide();
+        }
+
+        /// <summary>
+        /// 自动链接
+        /// </summary>
+        /// <param name="o"></param>
+        private void PlateTimeLink(object o)
+        {
+            PlateStar();
         }
 
         /// <summary>
@@ -53,14 +82,19 @@ namespace ZBY_HW_GATE.Plate
         /// <param name="mes"></param>
         private void Message(string mes)
         {
-            if (LogTextBox.Lines.Length > 100)
+            if (LogListBox.InvokeRequired)
             {
-                LogTextBox.Clear();
+                LogListBox.Invoke(new UpdateUiDelegate(Message), new object[] { mes });
             }
-            LogTextBox.Text += mes+"\r\n";
-            LogTextBox.Focus();//获取焦点
-            LogTextBox.Select(LogTextBox.TextLength, 0);//光标定位到文本最后
-            LogTextBox.ScrollToCaret();//滚动到光标处
+            else
+            {
+                if (LogListBox.Items.Count > 100)
+                {
+                    LogListBox.Items.RemoveAt(0);
+                }
+                LogListBox.Items.Add(mes);
+                LogListBox.SelectedIndex = LogListBox.Items.Count - 1;
+            }
         }
 
         /// <summary>
@@ -70,17 +104,19 @@ namespace ZBY_HW_GATE.Plate
         /// <param name="status"></param>
         private void PlateCallBack(string str,uint status)
         {
-            if(status==1)
+            SetPlateStates(status);
+            if (status==1)
             {
                 OnLineLable.BackColor = Color.DarkGreen;
-                Message(string.Format("{0} Plate OnLine",str));
-                log.logInfo.Info(string.Format("{0} Plate OnLine", str));
+                //Message(string.Format("{0} Plate OnLine",str));
+                Log_.logInfo.Info(string.Format("{0} Plate OnLine", str));
+                timer_PlateLink.Change(-1, -1);
             }
             if(status==0)
             {
                 OnLineLable.BackColor = Color.DarkRed;
-                Message(string.Format("{0} Plate Drop line", str));
-                log.logWarn.Warn(string.Format("{0} Plate Drop line", str));
+                //Message(string.Format("{0} Plate Drop line", str));
+                Log_.logWarn.Warn(string.Format("{0} Plate Drop line", str));
             }
         }
 
@@ -91,6 +127,11 @@ namespace ZBY_HW_GATE.Plate
         /// <param name="e"></param>
         private void Button1_Click(object sender, EventArgs e)
         {
+            PlateStar();
+        }
+        public void PlateLink()
+        {
+            timer_PlateLink.Change(TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10));
             PlateStar();
         }
 
@@ -107,6 +148,7 @@ namespace ZBY_HW_GATE.Plate
             IpTextBox.Text = Ip;
             PlateTextBox.Text = Plate;
             ColorTextBox.Text = Color;
+            PlateResultEvent(string.Format("Plate Result Time：{0} Plate：{1}",Time,Plate));
         }
 
         /// <summary>
@@ -142,6 +184,10 @@ namespace ZBY_HW_GATE.Plate
         {
             setRelayClose();
         }
+        public void PlateLifting()
+        {
+            setRelayClose();
+        }
 
         /// <summary>
         /// 手动触发
@@ -149,6 +195,10 @@ namespace ZBY_HW_GATE.Plate
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Button3_Click_1(object sender, EventArgs e)
+        {
+            PlateSettiger();
+        }
+        public void PlateTigger()
         {
             PlateSettiger();
         }
@@ -162,6 +212,11 @@ namespace ZBY_HW_GATE.Plate
         {
             PlateQuitDevice();
         }
+        public void PlateAbort()
+        {
+            timer_PlateLink.Change(-1, -1);
+            PlateQuitDevice();
+        }
 
         /// <summary>
         /// 485传输
@@ -169,6 +224,10 @@ namespace ZBY_HW_GATE.Plate
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Button5_Click(object sender, EventArgs e)
+        {
+            Send485Action(DataTextBox.Text);
+        }
+        public void PlateSend()
         {
             Send485Action(DataTextBox.Text);
         }
@@ -182,6 +241,10 @@ namespace ZBY_HW_GATE.Plate
         {
             PlayAction(true);
         }
+        public void PlateOpenPlay()
+        {
+            PlayAction(true);
+        }
 
         /// <summary>
         /// 关闭视频
@@ -189,6 +252,10 @@ namespace ZBY_HW_GATE.Plate
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CloseButton_Click(object sender, EventArgs e)
+        {
+            PlayAction(false);
+        }
+        public void PlateClosePlay()
         {
             PlayAction(false);
         }
@@ -202,6 +269,10 @@ namespace ZBY_HW_GATE.Plate
         {
             SetIpAction(Properties.Settings.Default.LocalIp);
         }
+        public void PlateSetIp()
+        {
+            SetIpAction(Properties.Settings.Default.LocalIp);
+        }
 
         /// <summary>
         /// 设置保存路径
@@ -212,6 +283,10 @@ namespace ZBY_HW_GATE.Plate
         {
             SetSaveImg(Properties.Settings.Default.PlatePicSavrPath);
         }
+        public void PlateSetPath()
+        {
+            SetSaveImg(Properties.Settings.Default.PlatePicSavrPath);
+        }
 
         /// <summary>
         /// 搜索设备
@@ -219,6 +294,10 @@ namespace ZBY_HW_GATE.Plate
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SearchButton_Click(object sender, EventArgs e)
+        {
+            PlateSearchDevice();
+        }
+        public void PlateSera()
         {
             PlateSearchDevice();
         }

@@ -173,6 +173,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Http\CHttp.cs" />
+    <Compile Include="Http\Http_Window.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Http\Http_Window.Designer.cs">
+      <DependentUpon>Http_Window.cs</DependentUpon>
+    </Compile>
     <Compile Include="IEDataBase\InData.cs" />
     <Compile Include="IEDataBase\InData_Window.cs">
       <SubType>Form</SubType>
@@ -232,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gate\Gate_Window.resx">
       <DependentUpon>Gate_Window.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Http\Http_Window.resx">
+      <DependentUpon>Http_Window.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IEDataBase\InData_Window.resx">
       <DependentUpon>InData_Window.cs</DependentUpon>
