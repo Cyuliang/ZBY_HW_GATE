@@ -37,8 +37,6 @@
             this.readerCardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.入闸显示屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.出闸显示屏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.priterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scannerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.netWorkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,11 +83,11 @@
             this.PlateLiftingtoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.PlateTransmissionToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.PlateSearchToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.PlateSetPathToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.PlateSetIpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.PlateOpenPlayToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.PlateClosePlayToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.PlateSetIpToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.PlateSetPathToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -122,7 +120,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1008, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(938, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -170,25 +168,10 @@
             // 
             // ledToolStripMenuItem
             // 
-            this.ledToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.入闸显示屏ToolStripMenuItem,
-            this.出闸显示屏ToolStripMenuItem});
             this.ledToolStripMenuItem.Name = "ledToolStripMenuItem";
-            this.ledToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.ledToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ledToolStripMenuItem.Text = "显示屏";
             this.ledToolStripMenuItem.Click += new System.EventHandler(this.LedToolStripMenuItem_Click);
-            // 
-            // 入闸显示屏ToolStripMenuItem
-            // 
-            this.入闸显示屏ToolStripMenuItem.Name = "入闸显示屏ToolStripMenuItem";
-            this.入闸显示屏ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.入闸显示屏ToolStripMenuItem.Text = "入闸显示屏";
-            // 
-            // 出闸显示屏ToolStripMenuItem
-            // 
-            this.出闸显示屏ToolStripMenuItem.Name = "出闸显示屏ToolStripMenuItem";
-            this.出闸显示屏ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.出闸显示屏ToolStripMenuItem.Text = "出闸显示屏";
             // 
             // priterToolStripMenuItem
             // 
@@ -215,14 +198,16 @@
             // serverToolStripMenuItem
             // 
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            this.serverToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.serverToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.serverToolStripMenuItem.Text = "服务端";
+            this.serverToolStripMenuItem.Click += new System.EventHandler(this.serverToolStripMenuItem_Click);
             // 
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clientToolStripMenuItem.Text = "客户端";
+            this.clientToolStripMenuItem.Click += new System.EventHandler(this.clientToolStripMenuItem_Click);
             // 
             // hTTPToolStripMenuItem
             // 
@@ -280,12 +265,12 @@
             // 
             this.statusStrip1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
             this.PagetoolStripStatusLabel2,
+            this.toolStripStatusLabel1,
             this.TimetoolStripStatusLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 619);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(938, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -296,15 +281,15 @@
             this.toolStripStatusLabel1.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(140, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(891, 17);
+            this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.Text = "深圳众百源科技有限公司";
             // 
             // PagetoolStripStatusLabel2
             // 
             this.PagetoolStripStatusLabel2.BackColor = System.Drawing.SystemColors.Highlight;
             this.PagetoolStripStatusLabel2.Name = "PagetoolStripStatusLabel2";
-            this.PagetoolStripStatusLabel2.Size = new System.Drawing.Size(853, 17);
-            this.PagetoolStripStatusLabel2.Spring = true;
+            this.PagetoolStripStatusLabel2.Size = new System.Drawing.Size(32, 17);
             this.PagetoolStripStatusLabel2.Text = "首页";
             // 
             // TimetoolStripStatusLabel
@@ -328,7 +313,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 594);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(938, 594);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // tabControl1
@@ -338,7 +323,7 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1002, 541);
+            this.tabControl1.Size = new System.Drawing.Size(932, 541);
             this.tabControl1.TabIndex = 5;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged_1);
             this.tabControl1.DoubleClick += new System.EventHandler(this.tabControl1_DoubleClick_1);
@@ -350,7 +335,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(994, 515);
+            this.tabPage1.Size = new System.Drawing.Size(924, 515);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "首页";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -362,7 +347,7 @@
             this.MainListBox.ItemHeight = 12;
             this.MainListBox.Location = new System.Drawing.Point(3, 76);
             this.MainListBox.Name = "MainListBox";
-            this.MainListBox.Size = new System.Drawing.Size(988, 436);
+            this.MainListBox.Size = new System.Drawing.Size(918, 436);
             this.MainListBox.TabIndex = 2;
             // 
             // groupBox1
@@ -376,7 +361,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(988, 73);
+            this.groupBox1.Size = new System.Drawing.Size(918, 73);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "数据统计";
@@ -466,7 +451,8 @@
             this.toolStripSeparator4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1008, 25);
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStrip1.Size = new System.Drawing.Size(938, 25);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
@@ -502,7 +488,6 @@
             // toolStripButton2
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(35, 22);
@@ -513,7 +498,6 @@
             // toolStripButton3
             // 
             this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(45, 22);
@@ -524,7 +508,6 @@
             // toolStripButton4
             // 
             this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(43, 22);
@@ -540,7 +523,6 @@
             // InitToolStripButton
             // 
             this.InitToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.InitToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("InitToolStripButton.Image")));
             this.InitToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.InitToolStripButton.Name = "InitToolStripButton";
             this.InitToolStripButton.Size = new System.Drawing.Size(30, 22);
@@ -551,7 +533,6 @@
             // ReadToolStripButton
             // 
             this.ReadToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ReadToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ReadToolStripButton.Image")));
             this.ReadToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ReadToolStripButton.Name = "ReadToolStripButton";
             this.ReadToolStripButton.Size = new System.Drawing.Size(42, 22);
@@ -562,7 +543,6 @@
             // ForReadToolStripButton
             // 
             this.ForReadToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ForReadToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ForReadToolStripButton.Image")));
             this.ForReadToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ForReadToolStripButton.Name = "ForReadToolStripButton";
             this.ForReadToolStripButton.Size = new System.Drawing.Size(61, 22);
@@ -573,7 +553,6 @@
             // CloseToolStripButton
             // 
             this.CloseToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CloseToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseToolStripButton.Image")));
             this.CloseToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CloseToolStripButton.Name = "CloseToolStripButton";
             this.CloseToolStripButton.Size = new System.Drawing.Size(44, 22);
@@ -589,7 +568,6 @@
             // PlateLinktoolStripButton
             // 
             this.PlateLinktoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PlateLinktoolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PlateLinktoolStripButton.Image")));
             this.PlateLinktoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PlateLinktoolStripButton.Name = "PlateLinktoolStripButton";
             this.PlateLinktoolStripButton.Size = new System.Drawing.Size(35, 22);
@@ -600,7 +578,6 @@
             // PlateAborttoolStripButton
             // 
             this.PlateAborttoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PlateAborttoolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PlateAborttoolStripButton.Image")));
             this.PlateAborttoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PlateAborttoolStripButton.Name = "PlateAborttoolStripButton";
             this.PlateAborttoolStripButton.Size = new System.Drawing.Size(45, 22);
@@ -611,7 +588,6 @@
             // PlateTiggerToolStripButton
             // 
             this.PlateTiggerToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PlateTiggerToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PlateTiggerToolStripButton.Image")));
             this.PlateTiggerToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PlateTiggerToolStripButton.Name = "PlateTiggerToolStripButton";
             this.PlateTiggerToolStripButton.Size = new System.Drawing.Size(50, 22);
@@ -622,7 +598,6 @@
             // PlateLiftingtoolStripButton
             // 
             this.PlateLiftingtoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PlateLiftingtoolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PlateLiftingtoolStripButton.Image")));
             this.PlateLiftingtoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PlateLiftingtoolStripButton.Name = "PlateLiftingtoolStripButton";
             this.PlateLiftingtoolStripButton.Size = new System.Drawing.Size(47, 22);
@@ -633,7 +608,6 @@
             // PlateTransmissionToolStripButton
             // 
             this.PlateTransmissionToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PlateTransmissionToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PlateTransmissionToolStripButton.Image")));
             this.PlateTransmissionToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PlateTransmissionToolStripButton.Name = "PlateTransmissionToolStripButton";
             this.PlateTransmissionToolStripButton.Size = new System.Drawing.Size(92, 22);
@@ -644,7 +618,6 @@
             // PlateSearchToolStripButton
             // 
             this.PlateSearchToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PlateSearchToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PlateSearchToolStripButton.Image")));
             this.PlateSearchToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PlateSearchToolStripButton.Name = "PlateSearchToolStripButton";
             this.PlateSearchToolStripButton.Size = new System.Drawing.Size(51, 22);
@@ -652,10 +625,29 @@
             this.PlateSearchToolStripButton.ToolTipText = "搜索设备";
             this.PlateSearchToolStripButton.Click += new System.EventHandler(this.PlateSearchToolStripButton_Click);
             // 
+            // PlateSetPathToolStripButton
+            // 
+            this.PlateSetPathToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PlateSetPathToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PlateSetPathToolStripButton.Name = "PlateSetPathToolStripButton";
+            this.PlateSetPathToolStripButton.Size = new System.Drawing.Size(55, 22);
+            this.PlateSetPathToolStripButton.Text = "SetPath";
+            this.PlateSetPathToolStripButton.ToolTipText = "设置图片保存路径";
+            this.PlateSetPathToolStripButton.Click += new System.EventHandler(this.PlateSetPathToolStripButton_Click);
+            // 
+            // PlateSetIpToolStripButton
+            // 
+            this.PlateSetIpToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PlateSetIpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PlateSetIpToolStripButton.Name = "PlateSetIpToolStripButton";
+            this.PlateSetIpToolStripButton.Size = new System.Drawing.Size(42, 22);
+            this.PlateSetIpToolStripButton.Text = "SetIp";
+            this.PlateSetIpToolStripButton.ToolTipText = "绑定网卡IP";
+            this.PlateSetIpToolStripButton.Click += new System.EventHandler(this.PlateSetIpToolStripButton_Click);
+            // 
             // PlateOpenPlayToolStripButton
             // 
             this.PlateOpenPlayToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PlateOpenPlayToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PlateOpenPlayToolStripButton.Image")));
             this.PlateOpenPlayToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PlateOpenPlayToolStripButton.Name = "PlateOpenPlayToolStripButton";
             this.PlateOpenPlayToolStripButton.Size = new System.Drawing.Size(67, 22);
@@ -666,7 +658,6 @@
             // PlateClosePlayToolStripButton
             // 
             this.PlateClosePlayToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PlateClosePlayToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PlateClosePlayToolStripButton.Image")));
             this.PlateClosePlayToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PlateClosePlayToolStripButton.Name = "PlateClosePlayToolStripButton";
             this.PlateClosePlayToolStripButton.Size = new System.Drawing.Size(67, 22);
@@ -678,28 +669,6 @@
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // PlateSetIpToolStripButton
-            // 
-            this.PlateSetIpToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PlateSetIpToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PlateSetIpToolStripButton.Image")));
-            this.PlateSetIpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PlateSetIpToolStripButton.Name = "PlateSetIpToolStripButton";
-            this.PlateSetIpToolStripButton.Size = new System.Drawing.Size(42, 22);
-            this.PlateSetIpToolStripButton.Text = "SetIp";
-            this.PlateSetIpToolStripButton.ToolTipText = "绑定网卡IP";
-            this.PlateSetIpToolStripButton.Click += new System.EventHandler(this.PlateSetIpToolStripButton_Click);
-            // 
-            // PlateSetPathToolStripButton
-            // 
-            this.PlateSetPathToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PlateSetPathToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PlateSetPathToolStripButton.Image")));
-            this.PlateSetPathToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PlateSetPathToolStripButton.Name = "PlateSetPathToolStripButton";
-            this.PlateSetPathToolStripButton.Size = new System.Drawing.Size(55, 22);
-            this.PlateSetPathToolStripButton.Text = "SetPath";
-            this.PlateSetPathToolStripButton.ToolTipText = "设置图片保存路径";
-            this.PlateSetPathToolStripButton.Click += new System.EventHandler(this.PlateSetPathToolStripButton_Click);
             // 
             // statusStrip2
             // 
@@ -716,77 +685,77 @@
             this.toolStripStatusLabel11});
             this.statusStrip2.Location = new System.Drawing.Point(0, 572);
             this.statusStrip2.Name = "statusStrip2";
-            this.statusStrip2.Size = new System.Drawing.Size(1008, 22);
+            this.statusStrip2.Size = new System.Drawing.Size(938, 22);
             this.statusStrip2.TabIndex = 6;
             this.statusStrip2.Text = "statusStrip2";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(99, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(92, 17);
             this.toolStripStatusLabel2.Spring = true;
             this.toolStripStatusLabel2.Text = "集装箱";
             // 
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(99, 17);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(92, 17);
             this.toolStripStatusLabel3.Spring = true;
             this.toolStripStatusLabel3.Text = "出闸车牌";
             // 
             // toolStripStatusLabel4
             // 
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(99, 17);
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(92, 17);
             this.toolStripStatusLabel4.Spring = true;
             this.toolStripStatusLabel4.Text = "显示屏";
             // 
             // toolStripStatusLabel5
             // 
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(99, 17);
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(92, 17);
             this.toolStripStatusLabel5.Spring = true;
             this.toolStripStatusLabel5.Text = "出闸道闸";
             // 
             // toolStripStatusLabel6
             // 
             this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(99, 17);
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(92, 17);
             this.toolStripStatusLabel6.Spring = true;
             this.toolStripStatusLabel6.Text = "入闸道闸";
             // 
             // toolStripStatusLabel7
             // 
             this.toolStripStatusLabel7.Name = "toolStripStatusLabel7";
-            this.toolStripStatusLabel7.Size = new System.Drawing.Size(99, 17);
+            this.toolStripStatusLabel7.Size = new System.Drawing.Size(92, 17);
             this.toolStripStatusLabel7.Spring = true;
             this.toolStripStatusLabel7.Text = "身份证读卡器";
             // 
             // toolStripStatusLabel8
             // 
             this.toolStripStatusLabel8.Name = "toolStripStatusLabel8";
-            this.toolStripStatusLabel8.Size = new System.Drawing.Size(99, 17);
+            this.toolStripStatusLabel8.Size = new System.Drawing.Size(92, 17);
             this.toolStripStatusLabel8.Spring = true;
             this.toolStripStatusLabel8.Text = "本地数据库";
             // 
             // toolStripStatusLabel9
             // 
             this.toolStripStatusLabel9.Name = "toolStripStatusLabel9";
-            this.toolStripStatusLabel9.Size = new System.Drawing.Size(99, 17);
+            this.toolStripStatusLabel9.Size = new System.Drawing.Size(92, 17);
             this.toolStripStatusLabel9.Spring = true;
             this.toolStripStatusLabel9.Text = "远程服务端";
             // 
             // toolStripStatusLabel10
             // 
             this.toolStripStatusLabel10.Name = "toolStripStatusLabel10";
-            this.toolStripStatusLabel10.Size = new System.Drawing.Size(99, 17);
+            this.toolStripStatusLabel10.Size = new System.Drawing.Size(92, 17);
             this.toolStripStatusLabel10.Spring = true;
             this.toolStripStatusLabel10.Text = "本地服务端";
             // 
             // toolStripStatusLabel11
             // 
             this.toolStripStatusLabel11.Name = "toolStripStatusLabel11";
-            this.toolStripStatusLabel11.Size = new System.Drawing.Size(99, 17);
+            this.toolStripStatusLabel11.Size = new System.Drawing.Size(92, 17);
             this.toolStripStatusLabel11.Spring = true;
             this.toolStripStatusLabel11.Text = "本地客户端";
             // 
@@ -801,7 +770,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.ClientSize = new System.Drawing.Size(1008, 641);
+            this.ClientSize = new System.Drawing.Size(938, 641);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -849,8 +818,6 @@
         private System.Windows.Forms.ToolStripMenuItem outSluiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem informationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 入闸显示屏ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 出闸显示屏ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hTTPToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

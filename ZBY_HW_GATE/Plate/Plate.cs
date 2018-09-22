@@ -10,14 +10,17 @@ namespace ZBY_HW_GATE.Plate
 {
     class Plate
     {
-        private CLog log = new CLog();
+        private CLog Log_ = new CLog();
+        private IEDataBase.InfoData Data_ = new IEDataBase.InfoData();
 
         public Action<string> GetmessageAction;
         public Action<string, uint> PlateCallBack;
         public Action<string, string, string, string> PlateDataCallBack;
         public Action<byte[]> JpegCallBack;
         public Action<byte[]> DataJpegCallBack;
+        private delegate int OpenGateDelete(string Ip, int Port, String SN);
 
+        private OpenGateDelete delegatesOpenGate;
         public CLIENT_LPRC_ConnectCallback ConnectCallback = null;
         public CLIENT_LPRC_DataEx2Callback DataEx2Callback = null;
         public CLIENT_LPRC_JpegCallback JpegCallback = null;
@@ -27,7 +30,7 @@ namespace ZBY_HW_GATE.Plate
         private static CLIENT_LPRC_PLATE_RESULTEX recRes;
         private IntPtr pIP = IntPtr.Zero;
         private bool running = false;
-        private byte[] chJpegStream = new byte[NativeConstants.CLIENT_LPRC_BIG_PICSTREAM_SIZE_EX + 312];
+        private byte[] chJpegStream = new byte[NativeConstants.CLIENT_LPRC_BIG_PICSTREAM_SIZE_EX + 312];        
 
         public Plate()
         {
@@ -35,13 +38,15 @@ namespace ZBY_HW_GATE.Plate
             this.DataEx2Callback = new CLIENT_LPRC_DataEx2Callback(OnDataEx2Callback);
             this.JpegCallback = new CLIENT_LPRC_JpegCallback(OnJpegCallback);
             this.SerialDataCallback = new CLIENT_LPRC_SerialDataCallback(OnSerialDataCallback);
-            pIP = Marshal.StringToHGlobalAnsi(Properties.Settings.Default.PlateIPAddr);
+            pIP = Marshal.StringToHGlobalAnsi(Properties.Settings.Default.PlateIPAddr);         
 
             //注册回调函数
             NativeMethods.CLIENT_LPRC_RegCLIENTConnEvent(this.ConnectCallback);
             NativeMethods.CLIENT_LPRC_RegDataEx2Event(this.DataEx2Callback);
             NativeMethods.CLIENT_LPRC_RegJpegEvent(this.JpegCallback);
             NativeMethods.CLIENT_LPRC_RegSerialDataEvent(this.SerialDataCallback);
+
+            delegatesOpenGate = Gate.Gate.OpenDoor;
         }
 
         /// <summary>
@@ -52,13 +57,13 @@ namespace ZBY_HW_GATE.Plate
             if (NativeMethods.CLIENT_LPRC_InitSDK(Properties.Settings.Default.PlatePort, IntPtr.Zero, 0, pIP, 1) != 0)
             {
                 GetmessageAction(string.Format("{0} 初始化失败！",pIP.ToString()));
-                log.logInfo.Info(string.Format("{0} 初始化失败！", pIP.ToString()));
+                Log_.logInfo.Info(string.Format("{0} 初始化失败！", pIP.ToString()));
                 running = false;
             }
             else
             {
                 GetmessageAction(string.Format("{0} 初始化成功！", pIP.ToString()));
-                log.logWarn.Warn(string.Format("{0} 初始化成功！", pIP.ToString()));
+                Log_.logWarn.Warn(string.Format("{0} 初始化成功！", pIP.ToString()));
                 running = true;
             }
         }
@@ -82,10 +87,25 @@ namespace ZBY_HW_GATE.Plate
         private void OnDataEx2Callback(ref CLIENT_LPRC_PLATE_RESULTEX recResultEx, uint dwUser)
         {
             recRes = recResultEx;
-            string mes = string.Format("Ip：{0}，Plate：{1}，Color：{2}，Date：{3}",recRes.chCLIENTIP,recRes.chLicense,recRes.chColor,recRes.shootTime);
-            log.logInfo.Info(mes);
-            GetmessageAction(mes);               
-            Data(recRes);            
+            if(recRes.chLicense==string.Empty)
+            {
+                RS485Send(Properties.Settings.Default.Plate_Error);
+                return;
+            }
+            RS485Send(string.Format("{0},{1}", recRes.chLicense, Properties.Settings.Default.Plate_Tmp));
+            delegatesOpenGate(Properties.Settings.Default.OutDoorIp, Properties.Settings.Default.OutDoorPort, Properties.Settings.Default.OutDoorSN);
+
+            DateTime time = new DateTime(recRes.shootTime.Year, recRes.shootTime.Month, recRes.shootTime.Day, recRes.shootTime.Hour, recRes.shootTime.Minute, recRes.shootTime.Second);           
+            Data_.InserOut(time, recRes.chLicense);
+            Log_.logInfo.Info(string.Format("{0} 写入数据库",recRes.chLicense));
+            GetmessageAction(string.Format("{0} 写入数据库", recRes.chLicense));
+            string mes = string.Format("Ip：{0}，Plate：{1}，Color：{2}，Date：{3}",recRes.chCLIENTIP,recRes.chLicense,recRes.chColor,
+                string.Format("{0}/{1}/{2} {3}:{4}:{5}",recRes.shootTime.Year,recRes.shootTime.Month,recRes.shootTime.Day,recRes.shootTime.Hour,recRes.shootTime.Minute,recRes.shootTime.Second));
+            Log_.logInfo.Info(mes);
+            GetmessageAction(mes);
+            PlateDataCallBack(recRes.chCLIENTIP, recRes.chLicense, recRes.chColor,
+                string.Format("{0}/{1}/{2} {3}:{4}:{5}", recRes.shootTime.Year, recRes.shootTime.Month, recRes.shootTime.Day, recRes.shootTime.Hour, recRes.shootTime.Minute, recRes.shootTime.Second));
+            Data(recRes);          
         }
 
         /// <summary>
@@ -100,9 +120,13 @@ namespace ZBY_HW_GATE.Plate
                 this.JpegInfo = JpegInfo;
                 //把图像数据拷贝到指定内存
                 uint nJpegStream = this.JpegInfo.nLen;
-                Array.Clear(chJpegStream, 0, chJpegStream.Length);
+                Array.Clear(chJpegStream, 0, chJpegStream.Length); 
+                if(this.JpegInfo.pchBuf==IntPtr.Zero)
+                {
+                    return; 
+                }
                 Marshal.Copy(this.JpegInfo.pchBuf, chJpegStream, 0, (Int32)nJpegStream);
-                JpegCallBack(chJpegStream);                          
+                JpegCallBack(chJpegStream);        
             }
         }
 
@@ -128,7 +152,7 @@ namespace ZBY_HW_GATE.Plate
             if(NativeMethods.CLIENT_LPRC_SetNetworkCardBind(Marshal.StringToHGlobalAnsi(Ip))==0)
             {
                 GetmessageAction(string.Format("Set Ip Network {0}",Ip));
-                log.logInfo.Info(string.Format("Set Ip Network {0}",Ip));
+                Log_.logInfo.Info(string.Format("Set Ip Network {0}",Ip));
             }
         }
 
@@ -140,7 +164,7 @@ namespace ZBY_HW_GATE.Plate
         {
             NativeMethods.CLIENT_LPRC_SetSavePath(Marshal.StringToHGlobalAnsi(path));
             GetmessageAction(string.Format("Set Save Path {0}", path));
-            log.logInfo.Info(string.Format("Set Save Path {0}", path));
+            Log_.logInfo.Info(string.Format("Set Save Path {0}", path));
         }
 
         /// <summary>
@@ -153,7 +177,7 @@ namespace ZBY_HW_GATE.Plate
                 if (NativeMethods.CLIENT_LPRC_SetRelayClose(this.pIP, 9110) == 0)
                 {
                     GetmessageAction("发送抬杆命令！");
-                    log.logInfo.Info("发送抬杆命令！");
+                    Log_.logInfo.Info("发送抬杆命令！");
                 }
             }
         }
@@ -168,7 +192,7 @@ namespace ZBY_HW_GATE.Plate
                 if (NativeMethods.CLIENT_LPRC_SetTrigger(pIP, 8080) == 0)
                 {
                     GetmessageAction("模拟触发命令！");
-                    log.logInfo.Info("模拟触发命令！");
+                    Log_.logInfo.Info("模拟触发命令！");
                 }
             }
         }
@@ -185,7 +209,7 @@ namespace ZBY_HW_GATE.Plate
                 if (NativeMethods.CLIENT_LPRC_QuitDevice(this.pIP) == 0)
                 {
                     GetmessageAction("设备断开！");
-                    log.logInfo.Info("设备断开！");
+                    Log_.logInfo.Info("设备断开！");
                 }
             }
         }
@@ -200,7 +224,7 @@ namespace ZBY_HW_GATE.Plate
                 if(NativeMethods.CLIENT_LPRC_SetJpegStreamPlayOrStop(pIP, 1)==0)
                 {
                     GetmessageAction("Open Plate Video！");
-                    log.logInfo.Info("Open Plate Video！");
+                    Log_.logInfo.Info("Open Plate Video！");
                 }
             }
             else
@@ -208,7 +232,7 @@ namespace ZBY_HW_GATE.Plate
                 if(NativeMethods.CLIENT_LPRC_SetJpegStreamPlayOrStop(pIP, 0)==0)
                 {
                     GetmessageAction("Close Plate Video！");
-                    log.logInfo.Info("CLose Plate Video！");
+                    Log_.logInfo.Info("CLose Plate Video！");
                 }
             }
         }
@@ -220,13 +244,13 @@ namespace ZBY_HW_GATE.Plate
         {
             if(NativeMethods.CLIENT_LPRC_SearchDeviceList(ref DeviceInfo)>0)
             {                
-                GetmessageAction(DeviceInfo.chIp.ToString());
-                log.logInfo.Info(DeviceInfo.chIp.ToString());
+                GetmessageAction(string.Format("Find Device {0}",DeviceInfo.chIp.ToString()));
+                Log_.logInfo.Info(string.Format("Find Device {0}", DeviceInfo.chIp.ToString()));
             }
             else
             {
                 GetmessageAction("Not Find Device");
-                log.logInfo.Info("Not Find Device");
+                Log_.logWarn.Warn("Not Find Device");
             }
         }
 
@@ -240,7 +264,7 @@ namespace ZBY_HW_GATE.Plate
         {
             string mes = string.Format("Ip：{0}，Text：{1}",chCLIENTIP,pSerialData.pData.ToString());
             GetmessageAction(mes);
-            log.logInfo.Info(mes);            
+            Log_.logInfo.Info(mes);            
         }
 
         /// <summary>
@@ -261,7 +285,7 @@ namespace ZBY_HW_GATE.Plate
                 if (NativeMethods.CLIENT_LPRC_RS485Send(pIP, 9110, Marshal.StringToHGlobalAnsi(x), dst.Length) == 0)
                 {
                     GetmessageAction("透明传输成功！");
-                    log.logInfo.Info("透明传输成功！");
+                    Log_.logInfo.Info("透明传输成功！");
                 }
             }
         }

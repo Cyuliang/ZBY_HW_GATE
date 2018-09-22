@@ -90,7 +90,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="pServerIP" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">112.65.245.174</Value>
     </Setting>
     <Setting Name="nServerPort" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">6055</Value>
@@ -108,7 +108,7 @@
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="nRunMode" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="nTimeOut" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">30</Value>
@@ -192,13 +192,49 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="LocalIp" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">192.168.1.109</Value>
+      <Value Profile="(Default)">192.168.1.55</Value>
     </Setting>
     <Setting Name="CVRReadWhile" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">60</Value>
     </Setting>
     <Setting Name="HttpS" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://10.87.216.31:19090/ProsGardenCar</Value>
+    </Setting>
+    <Setting Name="eqid" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SPPLS01</Value>
+    </Setting>
+    <Setting Name="HttpTimeOut" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3000</Value>
+    </Setting>
+    <Setting Name="HttpReadWriteTimeout" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3000</Value>
+    </Setting>
+    <Setting Name="SockerClientIp" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="SocketClientPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5005</Value>
+    </Setting>
+    <Setting Name="LED_Supplier" Type="System.String" Scope="User">
+      <Value Profile="(Default)">未确认身份</Value>
+    </Setting>
+    <Setting Name="LED_Appointment" Type="System.String" Scope="User">
+      <Value Profile="(Default)">无数据</Value>
+    </Setting>
+    <Setting Name="LED_Parked" Type="System.String" Scope="User">
+      <Value Profile="(Default)">待定</Value>
+    </Setting>
+    <Setting Name="LED_Ontime" Type="System.String" Scope="User">
+      <Value Profile="(Default)">无数据</Value>
+    </Setting>
+    <Setting Name="Plate_Error" Type="System.String" Scope="User">
+      <Value Profile="(Default)">未识别到车牌，请按地面指示行驶！</Value>
+    </Setting>
+    <Setting Name="Plate_Result" Type="System.String" Scope="User">
+      <Value Profile="(Default)">普洛斯物流园祝您一路顺风！</Value>
+    </Setting>
+    <Setting Name="Plate_Tmp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">请出闸</Value>
     </Setting>
   </Settings>
 </SettingsFile>

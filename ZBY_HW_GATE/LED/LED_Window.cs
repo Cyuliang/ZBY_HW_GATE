@@ -120,6 +120,19 @@ namespace ZBY_HW_GATE.LED
         /// <param name="e"></param>
         private void AddTextButton_Click(object sender, EventArgs e)
         {
+            //遍历TextBox
+            foreach (Control con in groupBox1.Controls)
+            {
+                if(con is TextBox)
+                {
+                    TextBox box = (TextBox)con;
+                    if (box.Text.Trim() == string.Empty)
+                    {
+                        MessageBox.Show("所有参数不能为空");
+                        return;
+                    }
+                }
+            }
             string[] pTexts = { PlateTextBox.Text,SupplierTextBox.Text, AppointmentTextBox.Text,ParkedTextBox.Text,OntimeTextBox.Text};
             if(_AddText(pTexts)==0)
             {

@@ -26,21 +26,21 @@ namespace ZBY_HW_GATE.IEDataBase
             DataradioButton.Checked = true;
         }
 
-        private void InData_Window_Load(object sender, EventArgs e)
-        {
-            dataSet1 = DataBase.MySqlHelper.GetDataSet(DataBase.MySqlHelper.Conn, CommandType.Text, "select * from hw.indata", null);
-            bindingSource1.DataSource = dataSet1.Tables[0];
-            bindingNavigator1.BindingSource = bindingSource1;
-            dataGridView1.DataSource = bindingSource1;
-        }
+        //private void InData_Window_Load(object sender, EventArgs e)
+        //{
+        //    dataSet1 = DataBase.MySqlHelper.GetDataSet(DataBase.MySqlHelper.Conn, CommandType.Text, "select * from hw.indata", null);
+        //    bindingSource1.DataSource = dataSet1.Tables[0];
+        //    bindingNavigator1.BindingSource = bindingSource1;
+        //    dataGridView1.DataSource = bindingSource1;
+        //}
 
-        public void Init_Window_Show()
-        {
-            dataSet1 = DataBase.MySqlHelper.GetDataSet(DataBase.MySqlHelper.Conn, CommandType.Text, "select * from hw.indata", null);
-            bindingSource1.DataSource = dataSet1.Tables[0];
-            bindingNavigator1.BindingSource = bindingSource1;
-            dataGridView1.DataSource = bindingSource1;
-        }
+        //public void Init_Window_Show()
+        //{
+        //    dataSet1 = DataBase.MySqlHelper.GetDataSet(DataBase.MySqlHelper.Conn, CommandType.Text, "select * from hw.indata", null);
+        //    bindingSource1.DataSource = dataSet1.Tables[0];
+        //    bindingNavigator1.BindingSource = bindingSource1;
+        //    dataGridView1.DataSource = bindingSource1;
+        //}
 
         /// <summary>
         /// 查询数据

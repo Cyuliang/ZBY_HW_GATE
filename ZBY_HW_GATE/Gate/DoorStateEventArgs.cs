@@ -11,6 +11,6 @@ namespace ZBY_HW_GATE.Gate
         }
 
         public int State { get; private set; }
-        public int SN { get; private set; }
+        public Int32 SN { get; private set; }
     }
 }

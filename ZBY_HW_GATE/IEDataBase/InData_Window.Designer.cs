@@ -329,7 +329,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "InData";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InData_Window_FormClosing);
-            this.Load += new System.EventHandler(this.InData_Window_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();

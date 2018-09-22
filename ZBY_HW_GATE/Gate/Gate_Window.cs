@@ -6,12 +6,14 @@ namespace ZBY_HW_GATE.Gate
 {
     public partial class Gate_Window : Form
     {
-        private CLog Log_ = new CLog();
         private Gate Gate_ = new Gate();
+        private CLog Log_ = new CLog();
 
         public delegate int OpenGateDelete(string Ip, int Port, String SN);
         public delegate void StopDoorState();
         private delegate void AsynUpdateUi(string mes);
+        public delegate void GateStatusDelegate(int status, Int32 SN);
+        public event GateStatusDelegate GateStatusEvent;
         private OpenGateDelete delegatesOpenGate;
         public StopDoorState delegatesStopDoorState;
 
@@ -29,7 +31,7 @@ namespace ZBY_HW_GATE.Gate
             delegatesOpenGate = Gate.OpenDoor;
             Gate_.NewState += Gate__NewState;
             delegatesStopDoorState = Gate_.StopDoorState;
-            Gate_.GetDoorState();
+            //Gate_.GetDoorState();
         }
 
         /// <summary>
@@ -67,12 +69,14 @@ namespace ZBY_HW_GATE.Gate
                     label7.BackColor = Color.DarkGreen;
                     Log_.logInfo.Info(string.Format("{0} OnLine",e.SN));
                     GetMessage(string.Format("{0} OnLine", e.SN));
+                    GateStatusEvent(e.State, e.SN);
                 }
                 if (e.SN == Int32.Parse(Properties.Settings.Default.OutDoorSN))
                 {
                     label8.BackColor = Color.DarkGreen;
                     Log_.logInfo.Info(string.Format("{0} OnLine", e.SN));
                     GetMessage(string.Format("{0} OnLine", e.SN));
+                    GateStatusEvent(e.State, e.SN);
                 }
             }
             else
@@ -82,12 +86,14 @@ namespace ZBY_HW_GATE.Gate
                     label7.BackColor = Color.DarkRed;
                     Log_.logWarn.Warn(string.Format("{0} Drop line ", e.SN));
                     GetMessage(string.Format("{0} Drop line ", e.SN));
+                    GateStatusEvent(e.State, e.SN);
                 }
                 if (e.SN == Int32.Parse(Properties.Settings.Default.OutDoorSN))
                 {
                     label8.BackColor = Color.DarkRed;
                     Log_.logWarn.Warn(string.Format("{0} Drop line ", e.SN));
                     GetMessage(string.Format("{0} Drop line ", e.SN));
+                    GateStatusEvent(e.State, e.SN);
                 }
             }
         }

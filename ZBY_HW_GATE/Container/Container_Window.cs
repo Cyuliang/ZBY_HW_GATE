@@ -1,24 +1,34 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Data;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace ZBY_HW_GATE.Container
 {
     public partial class Container_Window : Form
     {
         private CLog Log_ = new CLog();
-        private IEDataBase.InData InData_ = new IEDataBase.InData();
+        private LED.LED LED_ = new LED.LED();
+        private IEDataBase.InfoData InData_ = new IEDataBase.InfoData();
         private System.Threading.Timer timer_connect2server;
 
         private delegate void UpdateUiDelegate(string mes);
-        public delegate void ContainerDelegate(string mes);        
+        public delegate void ContainerDelegate(string mes);
+        private delegate int OpenGateDelete(string Ip, int Port, String SN);
         public event ContainerDelegate ContainerEvent;
         public ContainerDelegate StatusDelegate;
+        private OpenGateDelete delegatesOpenGate;
+
+        private string ResultLPN = string.Empty;
+        private string ResultChecknum = string.Empty;
+        private string SelectText = string.Empty;
+
 
         public Container_Window()
         {
             InitializeComponent();
-
+            delegatesOpenGate = Gate.Gate.OpenDoor;
             Linkbutton.Hide();
             LastRbutton.Hide();
             Abortbutton.Hide();
@@ -65,7 +75,7 @@ namespace ZBY_HW_GATE.Container
         /// <param name="e"></param>
         private void AxVECONclient1_OnIntermediateRecognitionResultISO(object sender, AxVeconclientProj.IVECONclientEvents_OnIntermediateRecognitionResultISOEvent e)
         {
-            Message(string.Format("Container:triggerTime：{0} laneNum：{1} containerNum：{2} checkSum：{3}", e.triggerTime.ToLongDateString(), e.laneNum, e.containerNum, e.checkSum));
+            Message(string.Format("Container Media  triggerTime：{0} laneNum：{1} containerNum：{2} checkSum：{3}", e.triggerTime.ToLongDateString(), e.laneNum, e.containerNum, e.checkSum));
         }
 
         /// <summary>
@@ -138,8 +148,15 @@ namespace ZBY_HW_GATE.Container
         {
             Log_.logInfo.Info("Container UpdateLPN "+e.triggerTime.ToString()+" "+e.lPN);
             Message("Container UpdateLPN " + e.triggerTime.ToString() + " " + e.lPN);
-            BeginInvoke(new ContainerDelegate(ContainerEvent), string.Format("Container UpdateLPN at：{0} Plate：{1}", e.triggerTime.ToString(), e.lPN));
-            InData_.Insert(e.triggerTime, e.lPN);
+            ContainerEvent(string.Format("Container UpdateLPN at：{0} Plate：{1}", e.triggerTime.ToString(), e.lPN));
+            InData_.InsertIN(e.triggerTime, e.lPN);
+
+            ResultLPN = e.lPN;
+            if(e.lPN=="")
+            {
+                ResultLPN = "null";
+            }
+            ResultDate();
 
             textBox10.Text = e.triggerTime.ToString();
             textBox11.Text = e.lPN;
@@ -156,8 +173,15 @@ namespace ZBY_HW_GATE.Container
         {
             Log_.logInfo.Info("Container NewPLN " + e.triggerTime.ToString() + " " + e.lPN);
             Message("Container NewPLN " + e.triggerTime.ToString() + " " + e.lPN);
-            BeginInvoke(new ContainerDelegate(ContainerEvent), string.Format("Container NewPLN at：{0} Plate：{1}", e.triggerTime.ToString(), e.lPN));
-            InData_.Insert(e.triggerTime, e.lPN);
+            ContainerEvent( string.Format("Container NewPLN at：{0} Plate：{1}", e.triggerTime.ToString(), e.lPN));
+            InData_.InsertIN(e.triggerTime, e.lPN);
+
+            ResultLPN = e.lPN;
+            if(e.lPN=="")
+            {
+                ResultLPN = "null";
+            }
+            ResultDate();
 
             textBox10.Text = e.triggerTime.ToString();
             textBox11.Text = e.lPN;
@@ -174,8 +198,15 @@ namespace ZBY_HW_GATE.Container
         {
             Log_.logInfo.Info("Container Result " + e.triggerTime.ToString() + " " + e.checkSum1);
             Message("Container Result " + e.triggerTime.ToString() + " " + e.checkSum1);
-            BeginInvoke(new ContainerDelegate(ContainerEvent), string.Format("Container Result at：{0} CheckSum：{1}", e.triggerTime.ToString(), e.checkSum1));
+            ContainerEvent( string.Format("Container Result at：{0} CheckSum：{1}", e.triggerTime.ToString(), e.checkSum1));
             InData_.Update(e.triggerTime,e.checkSum1);
+
+            ResultChecknum = e.checkSum1;
+            if (e.checkSum1=="")
+            {
+                ResultChecknum = "null";
+            }
+            ResultDate();
 
             textBox1.Text = e.laneNum.ToString();
             textBox2.Text = e.triggerTime.ToString();
@@ -193,6 +224,63 @@ namespace ZBY_HW_GATE.Container
                 case 2:textBox7.Text = "两个 20 吋集装箱";break;
             }
         }
+
+        /// <summary>
+        /// 合并箱号和车牌并查询
+        /// </summary>
+        private void ResultDate()
+        {
+            if(ResultLPN!="")
+            {
+                if(ResultChecknum!="")
+                {
+                    if(ResultLPN!="null")
+                    {
+                        if(ResultChecknum!="null")
+                        {
+                            SelectText = string.Format("SELECT *  FROM `hw`.`gate` WHERE 'Plate'='{0}' and 'Container'='{1}'", ResultLPN, ResultChecknum);
+                        }
+                        if (ResultChecknum == "null")
+                        {
+                            SelectText = string.Format("SELECT *  FROM `hw`.`gate` WHERE 'Plate'='{0}'", ResultLPN);
+                        }
+                    }
+                    if(ResultLPN=="null")
+                    {
+                        if (ResultChecknum != "null")
+                        {
+                            SelectText = string.Format("SELECT *  FROM `hw`.`gate` WHERE 'Container'='{0}'", ResultChecknum);
+                        }
+                    }
+                    LED_.Initialize();
+                    LED_.AddScreen_Dynamic();
+                    LED_.AddScreenDynamicArea();
+                    MySqlDataReader reader = DataBase.MySqlHelper.ExecuteReader(DataBase.MySqlHelper.Conn, CommandType.Text, SelectText, null);
+                    if (reader.Read())
+                    {
+                        Message(string.Format("Run Cmd：{0}",SelectText));
+                        Log_.logInfo.Info(string.Format("Run Cmd：{0}", SelectText));
+                        LED_.AddScreenDynamicAreaText(new string[] { string.Format("{0}/{1}", reader[1], reader[2]), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), reader[6].ToString() });
+                        LED_.SendDynamicAreasInfoCommand();
+                        delegatesOpenGate(Properties.Settings.Default.InDoorIp,Properties.Settings.Default.InDoorPort,Properties.Settings.Default.InDoorSN);
+                    }
+                    else
+                    {
+                        Log_.logInfo.Info(string.Format("Not Find Data {0} {1}",ResultLPN,ResultChecknum));
+                        LED_.AddScreenDynamicAreaText(new string[] { string.Format("{0}/{1}", reader[1], reader[2]),
+                        Properties.Settings.Default.LED_Supplier,
+                        Properties.Settings.Default.LED_Appointment,
+                        Properties.Settings.Default.LED_Parked,
+                        Properties.Settings.Default.LED_Ontime});
+                        LED_.SendDynamicAreasInfoCommand();
+                    }
+                    LED_.Uninitialize();
+                }
+            }
+        ResultLPN = string.Empty;
+        ResultChecknum = string.Empty;
+        SelectText = string.Empty;
+    }
 
         /// <summary>
         /// 重写窗口关闭事件

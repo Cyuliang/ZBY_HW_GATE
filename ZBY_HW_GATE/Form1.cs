@@ -16,6 +16,8 @@ namespace ZBY_HW_GATE
         private IEDataBase.InData_Window InData_ = new IEDataBase.InData_Window();
         private IEDataBase.OutData_Window OutData_ = new IEDataBase.OutData_Window();
         private Http.Http_Window Http_ = new Http.Http_Window();
+        private SCSocket.Server_Window Server_ = new SCSocket.Server_Window();
+        private SCSocket.Client_Window Client_ = new SCSocket.Client_Window();
 
         private TabPage ContainerTable = new TabPage("集装箱");
         private TabPage PlateTable = new TabPage("电子车牌");
@@ -35,9 +37,11 @@ namespace ZBY_HW_GATE
         private delegate void UpdateUiDelegate(string mes);
         private delegate void ContainerDelegate();
         private delegate void CVRDelegate();
-        private delegate void InDataDelegate();
+        //private delegate void InDataDelegate();
+        //private delegate void OutDataDelegate();
         private delegate void LocalDataDelegate();
         private delegate void PlateDelegate();
+        private delegate void SetGateStatus(int status,Int32 SN);
 
         /// <summary>
         /// 启动时间
@@ -52,9 +56,48 @@ namespace ZBY_HW_GATE
             Container_.StatusDelegate += ContainerStatuesDelegate;
             Container_.ContainerEvent += Container__ContainerEvent;
             CVR_.FillDataUi += Message;
-            Plate_.SetPlateStates += PlateStates;
+            Plate_.SetPlateStates += Plate__SetPlateStates; ;
             Plate_.PlateResultEvent += Plate__PlateResultEvent;
-        } 
+            Gate_.GateStatusEvent += Gate__GateStatusEvent;
+        }
+
+        /// <summary>
+        /// 道闸状态
+        /// </summary>
+        /// <param name="status"></param>
+        /// <param name="SN"></param>
+        private void Gate__GateStatusEvent(int status, Int32 SN)
+        {
+            if (statusStrip2.InvokeRequired)
+            {
+                statusStrip2.Invoke(new SetGateStatus(Gate__GateStatusEvent), new object[] { status, SN });
+            }
+            else
+            {
+                if (SN == Int32.Parse(Properties.Settings.Default.InDoorSN))
+                {
+                    if (status == 1)
+                    {
+                        toolStripStatusLabel6.BackColor = Color.DarkOrange;
+                    }
+                    else
+                    {
+                        toolStripStatusLabel6.BackColor = Color.DarkRed;
+                    }
+                }
+                if (SN == Int32.Parse(Properties.Settings.Default.OutDoorSN))
+                {
+                    if (status == 1)
+                    {
+                        toolStripStatusLabel5.BackColor = Color.DarkOrange;
+                    }
+                    else
+                    {
+                        toolStripStatusLabel5.BackColor = Color.DarkRed;
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// 车牌
@@ -93,7 +136,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void LocalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new LocalDataDelegate(DataBase_.Init_ShowWindow)();
+            //new LocalDataDelegate(DataBase_.Init_ShowWindow)();
             SetTabPate("LocalTable", LocalTable, DataBase_);
         }
 
@@ -104,7 +147,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void InToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new InDataDelegate(InData_.Init_Window_Show)();
+            //new InDataDelegate(InData_.Init_Window_Show)();
             SetTabPate("InTable", InTable, InData_);
         }
 
@@ -138,6 +181,7 @@ namespace ZBY_HW_GATE
         /// <param name="e"></param>
         private void OutSluiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //new OutDataDelegate(OutData_.Init_Window_Show)();
             SetTabPate("OutTable", OutTable, OutData_);
         }
 
@@ -325,19 +369,27 @@ namespace ZBY_HW_GATE
             Message(resule);
         }
 
+        private delegate void SetPlateStatus(uint state);
         /// <summary>
-        /// 车牌链接状态
+        /// 车牌相机状态
         /// </summary>
         /// <param name="state"></param>
-        private void PlateStates(uint state)
+        private void Plate__SetPlateStates(uint state)
         {
-            if(state==1)
+            if (statusStrip2.InvokeRequired)
             {
-                toolStripStatusLabel3.BackColor = Color.DarkOrange;
+                statusStrip2.Invoke(new SetPlateStatus(Plate__SetPlateStates), new object[] { state });
             }
-            if(state==0)
+            else
             {
-                toolStripStatusLabel3.BackColor = Color.DarkRed;
+                if (state == 1)
+                {
+                    toolStripStatusLabel3.BackColor = Color.DarkOrange;
+                }
+                if (state == 0)
+                {
+                    toolStripStatusLabel3.BackColor = Color.DarkRed;
+                }
             }
         }
 
@@ -522,6 +574,26 @@ namespace ZBY_HW_GATE
         private void hTTPToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetTabPate("HttpTable", HttpTable,Http_ );
+        }
+
+        /// <summary>
+        /// Socket服务端
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void serverToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetTabPate("ServerTable", ServerTable, Server_);
+        }
+
+        /// <summary>
+        /// Socket客户端
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void clientToolStripMenuItem_Click(object sender, EventArgs e)
+        {            
+            SetTabPate("ClientTable", ClientTable, Client_);
         }
     }
 }

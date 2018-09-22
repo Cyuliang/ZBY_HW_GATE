@@ -51,8 +51,6 @@
             this.OnLineLable = new System.Windows.Forms.Label();
             this.DataTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.PlatePortTextBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.PlateIpTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.TimeTextBox = new System.Windows.Forms.TextBox();
@@ -65,6 +63,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.LogListBox = new System.Windows.Forms.ListBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.PlatePortTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -322,22 +322,6 @@
             this.label5.TabIndex = 69;
             this.label5.Text = "Data";
             // 
-            // PlatePortTextBox
-            // 
-            this.PlatePortTextBox.Location = new System.Drawing.Point(74, 44);
-            this.PlatePortTextBox.Name = "PlatePortTextBox";
-            this.PlatePortTextBox.Size = new System.Drawing.Size(145, 21);
-            this.PlatePortTextBox.TabIndex = 74;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 44);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 12);
-            this.label7.TabIndex = 73;
-            this.label7.Text = "PlatePort";
-            // 
             // PlateIpTextBox
             // 
             this.PlateIpTextBox.Location = new System.Drawing.Point(73, 17);
@@ -428,6 +412,22 @@
             this.LogListBox.Size = new System.Drawing.Size(512, 212);
             this.LogListBox.TabIndex = 1;
             // 
+            // PlatePortTextBox
+            // 
+            this.PlatePortTextBox.Location = new System.Drawing.Point(74, 44);
+            this.PlatePortTextBox.Name = "PlatePortTextBox";
+            this.PlatePortTextBox.Size = new System.Drawing.Size(145, 21);
+            this.PlatePortTextBox.TabIndex = 74;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 12);
+            this.label7.TabIndex = 73;
+            this.label7.Text = "PlatePort";
+            // 
             // Plate_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -480,8 +480,6 @@
         private System.Windows.Forms.Label OnLineLable;
         private System.Windows.Forms.TextBox DataTextBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox PlatePortTextBox;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox PlateIpTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox TimeTextBox;
@@ -494,5 +492,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox LogListBox;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.TextBox PlatePortTextBox;
+        private System.Windows.Forms.Label label7;
     }
 }

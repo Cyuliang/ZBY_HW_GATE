@@ -1,11 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -31,13 +26,21 @@ namespace ZBY_HW_GATE.IEDataBase
             DataradioButton.Checked = true;
         }
 
-        private void OutData_Window_Load(object sender, EventArgs e)
-        {
-            dataSet1 = DataBase.MySqlHelper.GetDataSet(DataBase.MySqlHelper.Conn, CommandType.Text, "select * from hw.outdata", null);
-            bindingSource1.DataSource = dataSet1.Tables[0];
-            bindingNavigator1.BindingSource = bindingSource1;
-            dataGridView1.DataSource = bindingSource1;
-        }
+        //private void OutData_Window_Load(object sender, EventArgs e)
+        //{
+        //    dataSet1 = DataBase.MySqlHelper.GetDataSet(DataBase.MySqlHelper.Conn, CommandType.Text, "select * from hw.outdata", null);
+        //    bindingSource1.DataSource = dataSet1.Tables[0];
+        //    bindingNavigator1.BindingSource = bindingSource1;
+        //    dataGridView1.DataSource = bindingSource1;
+        //}
+
+        //public void Init_Window_Show()
+        //{
+        //    dataSet1 = DataBase.MySqlHelper.GetDataSet(DataBase.MySqlHelper.Conn, CommandType.Text, "select * from hw.outdata", null);
+        //    bindingSource1.DataSource = dataSet1.Tables[0];
+        //    bindingNavigator1.BindingSource = bindingSource1;
+        //    dataGridView1.DataSource = bindingSource1;
+        //}
 
         /// <summary>
         /// 循环判断数据

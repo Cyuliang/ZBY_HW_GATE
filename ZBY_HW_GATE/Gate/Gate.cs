@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using WG3000_COMM.Core;
 
 namespace ZBY_HW_GATE.Gate
@@ -7,10 +8,12 @@ namespace ZBY_HW_GATE.Gate
     class Gate
     {
         private static  Gate Gate_ = new Gate();
+        private System.Threading.Timer GetTimer;
+
         /// <summary>
         /// 日志类
         /// </summary>
-        private CLog log = new CLog();          
+        private CLog Log_ = new CLog();          
 
         /// <summary>
         /// 控制器监听类
@@ -34,6 +37,8 @@ namespace ZBY_HW_GATE.Gate
 
         public Gate()
         {
+            GetTimer = new System.Threading.Timer(GetStatus, null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10));
+
             wgMjController1 = new wgMjController
             {
                 IP = Properties.Settings.Default.InDoorIp,
@@ -61,15 +66,24 @@ namespace ZBY_HW_GATE.Gate
 
         private void WgWatching_EventHandler(string message)
         {
-            log.logWarn.Warn(message);
+            Log_.logWarn.Warn(message);
         }
 
         /// <summary>
         /// 查询控制器状态
         /// </summary>
-        public void GetDoorState()
+        //public void GetDoorState()
+        //{
+        //    //DoorSatus(Properties.Settings.Default.InDoorSN, Properties.Settings.Default.OutDoorSN);          
+        //}
+
+        /// <summary>
+        /// 定时查询
+        /// </summary>
+        /// <param name="state"></param>
+        private  void GetStatus(object state)
         {
-            DoorSatus(Properties.Settings.Default.InDoorSN, Properties.Settings.Default.OutDoorSN);          
+            DoorSatus(Properties.Settings.Default.InDoorSN, Properties.Settings.Default.OutDoorSN);
         }
 
         /// <summary>
@@ -77,19 +91,21 @@ namespace ZBY_HW_GATE.Gate
         /// </summary>
         public void StopDoorState()
         {
+            //GetTimer.Change(-1, -1);
             try
             {
                 if (wgWatching != null)
                 {
                     wgWatching.WatchingController = null;
                     wgWatching.StopWatch();
-                    log.logInfo.Info("Close Door Watching");
+                    Log_.logInfo.Info("Close Door Watching");
+                    GetTimer.Change(-1, -1);
                 }
             }
             catch (Exception ex)
             {
 
-                log.logError.Error("Stop Door Watching", ex);
+                Log_.logError.Error("Stop Door Watching", ex);
             }
         }
 
@@ -100,21 +116,13 @@ namespace ZBY_HW_GATE.Gate
         /// <returns></returns>
         public static int OpenDoor(string Ip,int Port, string SN)
         {
-            using (wgMjController wgMjController1 = new wgMjController())
-            {
-                try
+                using (wgMjController wgMjController1 = new wgMjController())
                 {
                     wgMjController1.IP = Ip;
                     wgMjController1.PORT = Port;
                     wgMjController1.ControllerSN = Int32.Parse(SN);
-                    return (wgMjController1.RemoteOpenDoorIP(1));
+                    return wgMjController1.RemoteOpenDoorIP(1);
                 }
-                catch (Exception ex)
-                {
-                    Gate_.log.logError.Error("Open Door Error",ex);
-                }
-            }
-            return - 1;
         }
 
         /// <summary>
@@ -132,14 +140,14 @@ namespace ZBY_HW_GATE.Gate
                 try
                 {
                     wgMjControllerRunInformation conRunInfo = null;
-                    int commStatus = wgWatching.CheckControllerCommStatus(Int32.Parse(InSN), ref conRunInfo);
-                    newState(this, new DoorStateEventArgs(commStatus, Int32.Parse(InSN)));
-                    commStatus = wgWatching.CheckControllerCommStatus(Int32.Parse(OutSN), ref conRunInfo);
-                    newState(this, new DoorStateEventArgs(commStatus, Int32.Parse(OutSN)));
+                    int InStatus = wgWatching.CheckControllerCommStatus(Int32.Parse(InSN), ref conRunInfo);
+                    newState(this, new DoorStateEventArgs(InStatus, Int32.Parse(InSN)));
+                    int OutStatus = wgWatching.CheckControllerCommStatus(Int32.Parse(OutSN), ref conRunInfo);
+                    newState(this, new DoorStateEventArgs(OutStatus, Int32.Parse(OutSN)));
                 }
                 catch (Exception ex)
                 {
-                    log.logError.Error("Query  Door State Error", ex);
+                    Log_.logError.Error("Query  Door State Error", ex);
                 }
             }
         }

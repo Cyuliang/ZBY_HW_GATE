@@ -11,6 +11,7 @@ namespace ZBY_HW_GATE.Plate
         private Plate Plate_ = new Plate();
         private System.Threading.Timer timer_PlateLink;
 
+        private delegate void PlateDataDelegate(string Ip, string Plate, string Color, string Time);
         public delegate void SetPlateDelegate(uint state);
         private delegate void SetRelayCloseDelegate();
         private delegate void UpdateUiDelegate(string mes);
@@ -18,7 +19,7 @@ namespace ZBY_HW_GATE.Plate
         public delegate void PlateResultDelegate(string resule);
         public event PlateResultDelegate PlateResultEvent;
 
-        public SetPlateDelegate SetPlateStates;
+        public event SetPlateDelegate SetPlateStates;
         private PlateDelegate PlateStar;
         private PlateDelegate PlateSettiger;
         private PlateDelegate PlateQuitDevice;
@@ -50,6 +51,8 @@ namespace ZBY_HW_GATE.Plate
             SetSaveImg = new Action<string>(Plate_.SetSavrImagePath);
             PlateSearchDevice += Plate_.SearchDeviceList;
 
+            PlateIpTextBox.Text = Properties.Settings.Default.PlateIPAddr;
+            PlatePortTextBox.Text = Properties.Settings.Default.PlatePort.ToString();
             PlateSetIp();
             PlateSetPath();
 
@@ -104,12 +107,15 @@ namespace ZBY_HW_GATE.Plate
         /// <param name="status"></param>
         private void PlateCallBack(string str,uint status)
         {
-            SetPlateStates(status);
+            if(SetPlateStates!=null)
+            {
+                SetPlateStates(status);
+            }
             if (status==1)
             {
                 OnLineLable.BackColor = Color.DarkGreen;
                 //Message(string.Format("{0} Plate OnLine",str));
-                Log_.logInfo.Info(string.Format("{0} Plate OnLine", str));
+                //Log_.logInfo.Info(string.Format("{0} Plate OnLine", str));
                 timer_PlateLink.Change(-1, -1);
             }
             if(status==0)
@@ -130,9 +136,9 @@ namespace ZBY_HW_GATE.Plate
             PlateStar();
         }
         public void PlateLink()
-        {
+        {       
             timer_PlateLink.Change(TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10));
-            PlateStar();
+            //PlateStar();
         }
 
         /// <summary>
@@ -144,11 +150,18 @@ namespace ZBY_HW_GATE.Plate
         /// <param name="Time"></param>
         private void PlateDataInfoOut(string Ip,string Plate,string Color,string Time)
         {
-            TimeTextBox.Text = Time;
-            IpTextBox.Text = Ip;
-            PlateTextBox.Text = Plate;
-            ColorTextBox.Text = Color;
-            PlateResultEvent(string.Format("Plate Result Time：{0} Plate：{1}",Time,Plate));
+            if(TimeTextBox.InvokeRequired)
+            {
+                TimeTextBox.Invoke(new PlateDataDelegate(PlateDataInfoOut), new object[] { Ip, Plate, Color, Time });
+            }
+            else
+            {
+                TimeTextBox.Text = Time;
+                IpTextBox.Text = Ip;
+                PlateTextBox.Text = Plate;
+                ColorTextBox.Text = Color;
+                PlateResultEvent(string.Format("Plate Result Time：{0} Plate：{1}", Time, Plate));
+            } 
         }
 
         /// <summary>
@@ -215,8 +228,13 @@ namespace ZBY_HW_GATE.Plate
         public void PlateAbort()
         {
             timer_PlateLink.Change(-1, -1);
-            PlateQuitDevice();
+            PlateQuitDevice();           
+            //new System.Threading.Timer(CloseState, null, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(0));
         }
+        //private void CloseState(object o)
+        //{
+        //    SetPlateStates(0);
+        //}
 
         /// <summary>
         /// 485传输
@@ -258,6 +276,29 @@ namespace ZBY_HW_GATE.Plate
         public void PlateClosePlay()
         {
             PlayAction(false);
+            new System.Threading.Timer(ClearPic,null,TimeSpan.FromSeconds(5),TimeSpan.FromSeconds(0));
+        }
+
+        /// <summary>
+        /// 清除VIDEO
+        /// </summary>
+        /// <param name="state"></param>
+        private void ClearPic(object state)
+        {
+            ClearPicture();
+        }
+        delegate void clearDle();
+        private void ClearPicture()
+        {
+            if (pictureBox1.InvokeRequired)
+            {
+                pictureBox1.Invoke(new clearDle(ClearPicture), new object[] { });
+            }
+            else
+            {
+                pictureBox1.Image = null;
+                pictureBox1.Refresh();
+            }
         }
 
         /// <summary>

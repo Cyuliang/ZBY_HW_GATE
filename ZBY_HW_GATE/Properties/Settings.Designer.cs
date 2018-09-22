@@ -286,7 +286,7 @@ namespace ZBY_HW_GATE.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("112.65.245.174")]
         public string pServerIP {
             get {
                 return ((string)(this["pServerIP"]));
@@ -340,7 +340,7 @@ namespace ZBY_HW_GATE.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int nRunMode {
             get {
                 return ((int)(this["nRunMode"]));
@@ -592,7 +592,7 @@ namespace ZBY_HW_GATE.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.109")]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.55")]
         public string LocalIp {
             get {
                 return ((string)(this["LocalIp"]));
@@ -614,6 +614,135 @@ namespace ZBY_HW_GATE.Properties {
         public string HttpS {
             get {
                 return ((string)(this["HttpS"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SPPLS01")]
+        public string eqid {
+            get {
+                return ((string)(this["eqid"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3000")]
+        public int HttpTimeOut {
+            get {
+                return ((int)(this["HttpTimeOut"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3000")]
+        public int HttpReadWriteTimeout {
+            get {
+                return ((int)(this["HttpReadWriteTimeout"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string SockerClientIp {
+            get {
+                return ((string)(this["SockerClientIp"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5005")]
+        public int SocketClientPort {
+            get {
+                return ((int)(this["SocketClientPort"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("未确认身份")]
+        public string LED_Supplier {
+            get {
+                return ((string)(this["LED_Supplier"]));
+            }
+            set {
+                this["LED_Supplier"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("无数据")]
+        public string LED_Appointment {
+            get {
+                return ((string)(this["LED_Appointment"]));
+            }
+            set {
+                this["LED_Appointment"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("待定")]
+        public string LED_Parked {
+            get {
+                return ((string)(this["LED_Parked"]));
+            }
+            set {
+                this["LED_Parked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("无数据")]
+        public string LED_Ontime {
+            get {
+                return ((string)(this["LED_Ontime"]));
+            }
+            set {
+                this["LED_Ontime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("未识别到车牌，请按地面指示行驶！")]
+        public string Plate_Error {
+            get {
+                return ((string)(this["Plate_Error"]));
+            }
+            set {
+                this["Plate_Error"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("普洛斯物流园祝您一路顺风！")]
+        public string Plate_Result {
+            get {
+                return ((string)(this["Plate_Result"]));
+            }
+            set {
+                this["Plate_Result"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("请出闸")]
+        public string Plate_Tmp {
+            get {
+                return ((string)(this["Plate_Tmp"]));
+            }
+            set {
+                this["Plate_Tmp"] = value;
             }
         }
     }
